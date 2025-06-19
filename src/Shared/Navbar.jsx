@@ -14,6 +14,9 @@ const Navbar = () => {
         <>
         <NavLink to="/"><li>Home</li></NavLink>
         <NavLink to="/events"><li>Events</li></NavLink>
+
+
+        
         </>
     )
 
@@ -27,7 +30,7 @@ const Navbar = () => {
             </div>
 
             {/* navber list item */}
-            <div className='flex-none gap-4 items-center'>
+            <div className='flex-none gap-4 items-center '>
                 <div>{links}</div>
 
 
