@@ -3,6 +3,9 @@ import { createBrowserRouter } from 'react-router';
 import RootLayout from '../RootLayout/RootLayout';
 import Home from '../Home/Home';
 import Login from '../Pages/SignIn/Login';
+import ForgotPassword from '../Pages/SignIn/PasswordForget/ForgotPassword';
+import ViewProfile from '../Pages/ViewProfile/ViewProfile';
+import EditProfile from '../Pages/EditProfile/EditProfile';
 
 
 
@@ -19,6 +22,18 @@ const router = createBrowserRouter([
         {
           path: '/login',
           Component: Login
+        },
+        {
+          path: '/forgot-password',
+          Component: ForgotPassword
+        },
+        {
+            path: '/profile',
+            Component: ViewProfile
+        },
+        {
+            path: '/profile/edit',
+            Component: EditProfile
         }
     ]
   },
