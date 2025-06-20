@@ -6,6 +6,7 @@ import Login from '../Pages/SignIn/Login';
 import ForgotPassword from '../Pages/SignIn/PasswordForget/ForgotPassword';
 import ViewProfile from '../Pages/ViewProfile/ViewProfile';
 import EditProfile from '../Pages/EditProfile/EditProfile';
+import Register from '../Pages/Register/Register';
 
 
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         {
           path: '/login',
           Component: Login
+        },
+        {
+          path: '/register',
+          Component: Register
         },
         {
           path: '/forgot-password',

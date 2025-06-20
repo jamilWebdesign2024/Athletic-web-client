@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
 import { auth } from '../../Firebase/firebase.init';
+import { updateProfile } from 'firebase/auth';
 
 const EditProfile = () => {
 
@@ -12,7 +13,7 @@ const EditProfile = () => {
 
     const handleSave = async () => {
     try {
-      await updateProfile(auth.user, {
+      await updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photo,
       });

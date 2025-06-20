@@ -97,6 +97,7 @@ const Navbar = () => {
                       <img src={user.photoURL} className="w-20 h-20 rounded-full border-2 border-primary" />
                       <p className="font-semibold mt-2">{user.displayName}</p>
                       <p className="text-sm text-gray-500">{user.email}</p>
+                      <Link to="/profile" className="btn btn-sm mt-2 btn-primary w-full">View Profile</Link>
                     </div>
                     <ul className="space-y-2 text-sm">
                       <li><NavLink to="/" className="block hover:bg-gray-100 px-3 py-2 rounded">🏠 Home</NavLink></li>

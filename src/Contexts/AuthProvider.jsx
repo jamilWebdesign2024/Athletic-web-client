@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../Firebase/firebase.init';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { AuthContext } from './AuthContext/authContext';
 
 
@@ -37,6 +37,15 @@ const signOutUser =()=>{
 }
 
 
+// updateProfile
+const updateUserProfile = (name, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoURL,
+    });
+  };
+
+
 
 
 // Observer 
@@ -70,7 +79,8 @@ const authInfo  = {
     setLoading,
     signInUser,
     signOutUser,
-    signInWithGoogle
+    signInWithGoogle,
+    updateUserProfile
 }
 
 

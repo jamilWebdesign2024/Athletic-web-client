@@ -165,7 +165,7 @@ const Login = () => {
               </button>
 
               <p className='pt-4 font-semibold text-center text-gray-700'>
-                Don't have an account? <Link to="/auth/register" className='text-primary underline'>Register</Link>
+                Don't have an account? <Link to="/register" className='text-primary underline'>Register</Link>
               </p>
 
               <div className="flex w-full flex-col">
