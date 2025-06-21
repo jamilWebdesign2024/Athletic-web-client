@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
+import { motion } from "framer-motion";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -108,7 +109,12 @@ const Login = () => {
   return (
     <div style={backgroundStyle}>
       <div className="relative z-10 w-full max-w-sm mx-auto">
-        <div className="card backdrop-blur-md bg-white/50 shadow-2xl border border-white/30 rounded-xl">
+        <motion.div
+         initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        className="card backdrop-blur-md bg-white/50 shadow-2xl border border-white/30 rounded-xl">
           <div className="card-body text-gray-800">
             <div className='p-0 m-0'>
               <h1 className="text-3xl font-bold text-center text-primary">Login Your Athletic Club</h1>
@@ -177,7 +183,7 @@ const Login = () => {
               </button>
             </form>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import successLotie from '../../assets/register.json'
 import Lottie from 'lottie-react';
-
+import { motion } from "framer-motion";
 
 const Register = () => {
 
@@ -97,7 +97,12 @@ const Register = () => {
     return (
         <div style={backgroundStyle} className='py-6'>
 
-            <div className='hero-content flex-col lg:flex-row-reverse'>
+            <motion.div 
+             initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                viewport={{ once: true }}
+            className='hero-content flex-col lg:flex-row-reverse'>
                 <div className="text-center lg:text-left">
                     <Lottie style={{ width: '200px' }} animationData={successLotie} loop={true} ></Lottie>
                 </div>
@@ -123,7 +128,7 @@ const Register = () => {
                         <label className="label text-gray-700">Photo Url</label>
                         <input
                             type="photo"
-                            name='text'
+                            name='photo'
                             value={photo}
                             onChange={(e) => setPhoto(e.target.value)}
                             className="w-full px-4 py-3 mb-2 text-gray-600 bg-pink-50 border border-neutral rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -182,7 +187,7 @@ const Register = () => {
                         <span><FaGoogle /></span> Continue with Google
                     </button>
                 </div>
-            </div>
+            </motion.div>
         </div>
 
     );
