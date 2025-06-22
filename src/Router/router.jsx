@@ -7,6 +7,8 @@ import ForgotPassword from '../Pages/SignIn/PasswordForget/ForgotPassword';
 import ViewProfile from '../Pages/ViewProfile/ViewProfile';
 import EditProfile from '../Pages/EditProfile/EditProfile';
 import Register from '../Pages/Register/Register';
+import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
+import EventPage from '../Pages/FeaturedEvents/EventPage';
 
 
 
@@ -39,6 +41,15 @@ const router = createBrowserRouter([
         {
             path: '/profile/edit',
             Component: EditProfile
+        },
+        {
+            path: '/events',
+            Component: EventPage
+        },
+
+        {
+          path: '/events/:id',
+          Component: EventDetailsPage
         }
     ]
   },

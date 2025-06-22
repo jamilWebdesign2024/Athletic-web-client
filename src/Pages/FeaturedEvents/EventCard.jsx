@@ -1,19 +1,27 @@
-// components/EventCard.jsx
-// import { Link } from "react";
+// import { useNavigate } from "react";
 
 // const EventCard = ({ event }) => {
+//   const navigate = useNavigate();
+
 //   return (
-    // <div className="card bg-white shadow-md">
+    // <div className="card bg-white shadow-md rounded-xl overflow-hidden">
     //   <figure>
-    //     <img src={event.image} alt={event.name} className="h-48 w-full object-cover" />
+    //     <img
+    //       src={event.image}
+    //       alt={event.name}
+    //       className="h-48 w-full object-cover"
+    //     />
     //   </figure>
-    //   <div className="card-body">
-    //     <h3 className="text-xl font-bold">{event.name}</h3>
-    //     <p>{event.location}</p>
-    //     <p>Date: {event.date}</p>
-    //     <Link to={`/events/${event._id}`} className="btn btn-sm btn-primary mt-2">
+    //   <div className="card-body p-5">
+    //     <h3 className="text-xl font-bold mb-2">{event.name}</h3>
+    //     <p className="text-gray-600 mb-1">📍 {event.location}</p>
+    //     <p className="text-gray-500 mb-4">📅 {event.date}</p>
+    //     <button
+    //       onClick={() => navigate(`/events/${event._id}`)}
+    //       className="btn btn-sm btn-primary"
+    //     >
     //       View Details
-    //     </Link>
+    //     </button>
     //   </div>
     // </div>
 //   );
@@ -23,24 +31,32 @@
 
 
 import React from 'react';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const EventCard = ({event}) => {
-    return (
-        <div className="card bg-white shadow-md">
+  const navigate = useNavigate();
+  return (
+     <div className="card bg-white shadow-md rounded-xl overflow-hidden">
       <figure>
-        <img src={event.image} alt={event.name} className="h-48 w-full object-cover" />
+        <img
+          src={event.image}
+          alt={event.name}
+          className="h-48 w-full object-cover"
+        />
       </figure>
-      <div className="card-body">
-        <h3 className="text-xl font-bold">{event.name}</h3>
-        <p>{event.location}</p>
-        <p>Date: {event.date}</p>
-        <Link to={`/events/${event._id}`} className="btn btn-sm btn-primary mt-2">
+      <div className="card-body p-5">
+        <h3 className="text-xl font-bold mb-2">{event.name}</h3>
+        <p className="text-gray-600 mb-1">📍 {event.location}</p>
+        <p className="text-gray-500 mb-4">📅 {event.date}</p>
+        <button
+          onClick={() => navigate(`/events/${event._id}`)}
+          className="btn btn-sm btn-primary"
+        >
           View Details
-        </Link>
+        </button>
       </div>
     </div>
-    );
+  );
 };
 
 export default EventCard;
