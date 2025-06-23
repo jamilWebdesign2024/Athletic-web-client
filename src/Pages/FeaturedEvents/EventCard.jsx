@@ -45,7 +45,7 @@ const EventCard = ({event}) => {
         />
       </figure>
       <div className="card-body p-5">
-        <h3 className="text-xl font-bold mb-2">{event.name}</h3>
+        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
         <p className="text-gray-600 mb-1">📍 {event.location}</p>
         <p className="text-gray-500 mb-4">📅 {event.date}</p>
         <button

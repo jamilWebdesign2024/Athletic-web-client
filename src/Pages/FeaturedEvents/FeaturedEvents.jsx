@@ -30,7 +30,7 @@ const FeaturedEvents = () => {
           Featured Events
         </motion.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 w-10/12 mx-auto">
           {events.map((event, i) => (
             <motion.div
               key={event._id}
