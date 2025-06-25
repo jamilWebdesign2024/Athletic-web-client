@@ -9,6 +9,8 @@ import EditProfile from '../Pages/EditProfile/EditProfile';
 import Register from '../Pages/Register/Register';
 import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
 import EventPage from '../Pages/FeaturedEvents/EventPage';
+import PrivateRoute from '../routes/PrivateRoute';
+import CreateEvent from '../Pages/CreateEvent/CreateEvent';
 
 
 
@@ -50,7 +52,13 @@ const router = createBrowserRouter([
         {
           path: '/events/:id',
           Component: EventDetailsPage
-        }
+        },
+        {
+            path: '/create-event',
+            element: <PrivateRoute>
+              <CreateEvent></CreateEvent>
+            </PrivateRoute>
+        },
     ]
   },
 ]);
