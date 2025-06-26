@@ -11,6 +11,7 @@ import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
 import EventPage from '../Pages/FeaturedEvents/EventPage';
 import PrivateRoute from '../routes/PrivateRoute';
 import CreateEvent from '../Pages/CreateEvent/CreateEvent';
+import EventDetails from '../Pages/EventDetails/EventDetails';
 
 
 
@@ -59,6 +60,12 @@ const router = createBrowserRouter([
               <CreateEvent></CreateEvent>
             </PrivateRoute>
         },
+        {
+            path: '/events/:id',
+            element: <PrivateRoute>
+              <EventDetails></EventDetails>
+            </PrivateRoute>
+        }
     ]
   },
 ]);
