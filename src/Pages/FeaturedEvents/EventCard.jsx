@@ -49,7 +49,7 @@ const EventCard = ({event}) => {
         <p className="text-gray-600 mb-1">📍 {event.location}</p>
         <p className="text-gray-500 mb-4">📅 {event.date}</p>
         <button
-          onClick={() => navigate(`/events/${event._id}`)}
+          onClick={() => navigate(`/eventDetails/${event._id}`)}
           className="btn btn-sm btn-primary"
         >
           View Details

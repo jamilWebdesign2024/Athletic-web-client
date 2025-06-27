@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         },
 
         {
-          path: '/events/:id',
+          path: '/eventDetails/:id',
           Component: EventDetailsPage
         },
         {
@@ -64,7 +64,8 @@ const router = createBrowserRouter([
             path: '/events/:id',
             element: <PrivateRoute>
               <EventDetails></EventDetails>
-            </PrivateRoute>
+            </PrivateRoute>,
+            loader: ({params})=> fetch(`http://localhost:3000/sports/${params.id}`)
         }
     ]
   },

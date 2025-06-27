@@ -1,92 +1,62 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react';
-import axios from '../../utils/axios';
-import { motion } from 'framer-motion';
+import loadingLottie from '../../assets/loading.json';
 import Lottie from 'lottie-react';
-import loadingAnimation from '../../assets/loading.json';
-import successAnimation from '../../assets/sucess.json';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router';
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [fetchSuccess, setFetchSuccess] = useState(false);
 
   useEffect(() => {
-    axios.get('/events')
-      .then(res => {
-        setEvents(res.data);
-        setFetchSuccess(true);
-      })
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    const eventFetch = async () => {
+      try {
+        const dataFetch = await axios.get('http://localhost:3000/sports');
+        setEvents(dataFetch.data);
+      } catch (error) {
+        console.log('Failed to fetch events', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    eventFetch();
   }, []);
 
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <Lottie animationData={loadingAnimation} className="w-36 h-36" />
-      </div>
-    );
-  }
-
-  if (!events.length) {
-    return (
-      <div className="text-center py-20 text-xl font-semibold text-gray-600">
-        No events available.
+        <Lottie animationData={loadingLottie} className="w-36 h-36" />
       </div>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="py-12 px-4 bg-gradient-to-br from-blue-50 to-green-100 min-h-screen"
-    >
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-8">All Upcoming Athletic Events</h1>
-
-        {fetchSuccess && (
-          <div className="flex justify-center mb-8">
-            <div className="text-center">
-              <Lottie animationData={successAnimation} className="w-24 h-24 mx-auto" />
-              <p className="text-green-600 font-medium mt-2">Events loaded successfully!</p>
-            </div>
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {events.map(event => (
-            <motion.div
-              key={event._id}
-              whileHover={{ scale: 1.03 }}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
-            >
-              <img
-                src={event.picture}
-                alt={event.eventName}
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-xl font-semibold text-gray-800">{event.eventName}</h2>
-                <p className="text-sm text-gray-600 mt-1">{event.eventType}</p>
-                <p className="text-sm text-gray-500 mt-1">
-                  Date: {new Date(event.eventDate).toLocaleDateString()}
-                </p>
-                <p className="text-sm text-gray-500 mt-1">Organizer: {event.creator_name}</p>
-
-                <Link to={`/events/${event._id}`}>
-                  <button className="mt-4 w-full bg-primary text-white py-2 rounded hover:bg-primary-dark transition">
-                    View Details
-                  </button>
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
+    <div className="max-w-5xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {events.map((event, index) => (
+        <motion.div
+          key={event._id || index}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
+          className="bg-white rounded-2xl shadow-lg p-5 border border-gray-200 hover:shadow-2xl hover:scale-105 transition-transform"
+        >
+          <img
+            src={event.posterUrl || 'https://via.placeholder.com/300x200'}
+            alt={event.eventName}
+            className="rounded-xl w-full h-48 object-cover mb-4"
+          />
+          <h3 className="text-xl font-bold text-gray-800 mb-2">{event.eventName}</h3>
+          <p className="text-gray-500 mb-1">Type: {event.eventType}</p>
+          <p className="text-gray-500 mb-1">Date: {event.eventDate}</p>
+          <p className="text-gray-500 mb-1">Venue: {event.venue || 'N/A'}</p>
+          <p className="text-sm text-gray-400">{event.description?.slice(0, 80)}...</p>
+          <Link to={`/events/${event._id}`}><button className="mt-3 w-full bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-xl">
+            View Details
+          </button></Link>
+        </motion.div>
+      ))}
+    </div>
   );
 };
 
