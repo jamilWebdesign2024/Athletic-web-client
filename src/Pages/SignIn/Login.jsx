@@ -2,8 +2,8 @@ import { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
-import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import { motion } from "framer-motion";
+import { AuthContext } from '../../Contexts/AuthContext/authContext';
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [emailInputValue, setEmailInputValue] = useState("");
 
-  const { signIn, signInWithGoogle } = use(AuthContext);
+  const { signInUser, signInWithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ const Login = () => {
       return;
     }
 
-    signIn(email, password)
+    signInUser(email, password)
       .then((result) => {
         const user = result.user;
         if (user) {

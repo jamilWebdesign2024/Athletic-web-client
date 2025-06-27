@@ -1,7 +1,7 @@
 import React, { use, useContext } from 'react';
 import { Navigate, useLocation } from 'react-router';
 import Lottie from 'lottie-react';
-import loadingAnimation from '../assets/loading.json';  // তোমার লোডিং এনিমেশন ফাইল
+import loadingAnimation from '../assets/loading.json';  
 import { AuthContext } from '../Contexts/AuthContext/authContext';
 
 const PrivateRoute = ({ children }) => {
