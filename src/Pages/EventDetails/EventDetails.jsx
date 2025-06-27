@@ -1,199 +1,165 @@
-// import React, { use, useEffect, useState } from 'react';
-// import { useParams, useNavigate } from 'react-router';
-// import axios from '../../utils/axios'; // Using your custom axios instance
-// import Swal from 'sweetalert2';
-// import { AuthContext } from '../../Contexts/AuthContext/authContext';
-// import { motion } from 'framer-motion';
-// import Lottie from 'lottie-react';
-// import successAnimation from '../../assets/sucess.json';
-// import loadingAnimation from '../../assets/loading.json';
-
-// const EventDetails = () => {
-//   const { id } = useParams();
-//   const { user } = use(AuthContext);
-//   const navigate = useNavigate();
-  
-//   const [event, setEvent] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [bookingLoading, setBookingLoading] = useState(false);
-//   const [bookingSuccess, setBookingSuccess] = useState(false);
-
-//   // Fetch event details using your axios instance
-//   useEffect(() => {
-//     const fetchEvent = async () => {
-//       try {
-//         const { data } = await axios.get(`/events/${id}`);
-//         setEvent(data);
-//       } catch (err) {
-//         Swal.fire('Error!', err.response?.data?.message || 'Failed to load event details', 'error');
-//         navigate('/events');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchEvent();
-//   }, [id, navigate]);
-
-//   const handleBookNow = async () => {
-//     if (!user) {
-//       Swal.fire('Warning', 'Please login to book this event', 'warning');
-//       return navigate('/login');
-//     }
-
-//     try {
-//       setBookingLoading(true);
-      
-//       const bookingData = {
-//         ...event,
-//         user_email: user.email,
-//         user_name: user.displayName,
-//         user_photo: user.photoURL,
-//         booking_date: new Date().toISOString(),
-//         event_id: id,
-//         status: 'pending' // Adding booking status
-//       };
-
-//       // Using your axios instance for the booking request
-//       const { data } = await axios.post('/bookings', bookingData);
-
-//       if (data.insertedId || data.success) {
-//         setBookingSuccess(true);
-//         Swal.fire('Success!', 'Event booked successfully!', 'success');
-//       } else {
-//         throw new Error('Booking failed!');
-//       }
-//     } catch (err) {
-//       Swal.fire('Error!', err.response?.data?.message || err.message, 'error');
-//     } finally {
-//       setBookingLoading(false);
-//     }
-//   };
-
-//   if (loading) {
-//     return (
-//       <div className="flex justify-center items-center min-h-screen">
-//         <Lottie animationData={loadingAnimation} className="w-36 h-36" />
-//       </div>
-//     );
-//   }
-
-//   if (!event) {
-//     return <div className="text-center py-12">Event not found</div>;
-//   }
-
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       transition={{ duration: 0.5 }}
-//       className="min-h-screen bg-gradient-to-br from-blue-50 to-green-100 py-12 px-4"
-//     >
-//       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-//         <div className="md:flex">
-//           <div className="md:w-1/2">
-//             <img 
-//               className="w-full h-full object-cover" 
-//               src={event.picture} 
-//               alt={event.eventName} 
-//             />
-//           </div>
-          
-//           <div className="p-8 md:w-1/2">
-//             <div className="uppercase tracking-wide text-sm text-primary font-semibold">
-//               {event.eventType}
-//             </div>
-//             <h1 className="block mt-2 text-2xl font-bold text-gray-800">
-//               {event.eventName}
-//             </h1>
-//             <p className="mt-2 text-gray-600">{event.description}</p>
-            
-//             <div className="mt-6 space-y-2">
-//               <div className="flex items-center">
-//                 <span className="font-semibold">Date:</span>
-//                 <span className="ml-2">
-//                   {new Date(event.eventDate).toLocaleDateString('en-US', {
-//                     year: 'numeric',
-//                     month: 'long',
-//                     day: 'numeric'
-//                   })}
-//                 </span>
-//               </div>
-              
-//               <div className="flex items-center">
-//                 <span className="font-semibold">Organizer:</span>
-//                 <span className="ml-2">{event.creator_name}</span>
-//               </div>
-              
-//               <div className="flex items-center">
-//                 <span className="font-semibold">Contact:</span>
-//                 <a href={`mailto:${event.creator_email}`} className="ml-2 text-blue-600">
-//                   {event.creator_email}
-//                 </a>
-//               </div>
-//             </div>
-            
-//             {user && (
-//               <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-//                 <h3 className="font-semibold mb-2">Your Information:</h3>
-//                 <p>Name: {user.displayName}</p>
-//                 <p>Email: {user.email}</p>
-//               </div>
-//             )}
-            
-//             {bookingSuccess ? (
-//               <div className="mt-6 text-center">
-//                 <Lottie animationData={successAnimation} className="w-44 h-44 mx-auto" />
-//                 <p className="text-green-600 font-semibold mt-2 text-lg">
-//                   Booking Confirmed!
-//                 </p>
-//                 <button
-//                   onClick={() => navigate('/myBookings')}
-//                   className="mt-4 bg-primary text-white px-4 py-2 rounded"
-//                 >
-//                   View My Bookings
-//                 </button>
-//               </div>
-//             ) : (
-//               <button
-//                 onClick={handleBookNow}
-//                 disabled={bookingLoading}
-//                 className={`mt-6 w-full py-3 px-4 rounded-lg transition ${
-//                   bookingLoading 
-//                     ? 'bg-gray-400 cursor-not-allowed' 
-//                     : 'bg-primary hover:bg-primary-dark text-white font-bold'
-//                 }`}
-//               >
-//                 {bookingLoading ? (
-//                   <span className="flex items-center justify-center">
-//                     <Lottie animationData={loadingAnimation} className="w-8 h-8" />
-//                   </span>
-//                 ) : (
-//                   'Book Now'
-//                 )}
-//               </button>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </motion.div>
-//   );
-// };
-
-// export default EventDetails;
-
-
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext/authContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../assets/loading.json';
 
 const EventDetails = () => {
   const event = useLoaderData();
-  console.log(event);
-  
+  const { user } = useContext(AuthContext);
+
+  const [loading, setLoading] = useState(true);
+  const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
+
+  useEffect(() => {
+    if (event.deadline) {
+      const deadlineDate = new Date(event.deadline);
+      const today = new Date();
+      setIsDeadlinePassed(today > deadlineDate);
+    }
+  }, [event.deadline]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleBookNow = async () => {
+    if (!user?.email) {
+      Swal.fire('Login Required', 'Please log in to book this event.', 'warning');
+      return;
+    }
+    if (isDeadlinePassed) {
+      Swal.fire('Booking Closed', 'Booking deadline has passed.', 'error');
+      return;
+    }
+    const currentEvent = { ...event, user_email: user.email };
+    try {
+      await axios.post('http://localhost:3000/bookings', currentEvent);
+      Swal.fire('Success', 'Your booking has been confirmed!', 'success');
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error', 'Something went wrong. Please try again.', 'error');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
+        <Lottie animationData={loadingAnimation} loop className="w-48" />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>{event.eventName}</h1>
-    </div>
+    <motion.div
+      className="min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 py-10 px-4"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+        {/* Left content */}
+        <div className="md:col-span-2 bg-white rounded-xl shadow-xl p-8 space-y-8">
+          <motion.h1
+            className="text-5xl font-extrabold text-blue-900"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.7 }}
+          >
+            {event.eventName}
+          </motion.h1>
+
+          <motion.img
+            src={event.picture}
+            alt={event.eventName}
+            className="rounded-lg w-full object-cover shadow-md"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.7 }}
+          />
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-lg text-gray-800"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+          >
+            <div>
+              <p><span className="font-semibold">Type:</span> {event.eventType}</p>
+              <p><span className="font-semibold">Date:</span> {event.eventDate}</p>
+              <p><span className="font-semibold">Time:</span> {event.time}</p>
+              <p><span className="font-semibold">Venue:</span> {event.venue}</p>
+            </div>
+            <div>
+              <p><span className="font-semibold">Category:</span> {event.category}</p>
+              <p><span className="font-semibold">Fee:</span> {event.fee} BDT</p>
+              <p><span className="font-semibold">Max Participants:</span> {event.maxParticipants}</p>
+              <p><span className="font-semibold">Deadline:</span> {event.deadline}</p>
+            </div>
+          </motion.div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.7 }}
+          >
+            <h2 className="text-3xl font-semibold mb-3 text-blue-900">Description</h2>
+            <p className="leading-relaxed text-gray-700">{event.description}</p>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7, duration: 0.7 }}
+          >
+            <h2 className="text-3xl font-semibold mb-3 text-blue-900">Rules</h2>
+            <p className="leading-relaxed text-gray-700">{event.rules}</p>
+          </motion.section>
+        </div>
+
+        {/* Right booking card */}
+        <motion.div
+          className="bg-white rounded-xl shadow-xl p-8 flex flex-col justify-between"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <h3 className="text-3xl font-bold text-blue-900 mb-6 text-center">
+            Book Now Section
+          </h3>
+
+          <div className="flex-grow" />
+
+          <motion.button
+            onClick={handleBookNow}
+            disabled={isDeadlinePassed}
+            className={`w-full py-3 rounded-lg text-white font-semibold shadow-md
+              ${isDeadlinePassed ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}
+              focus:outline-none focus:ring-4 focus:ring-blue-400 transition mb-4`}
+            whileHover={!isDeadlinePassed ? { scale: 1.05 } : {}}
+            whileTap={!isDeadlinePassed ? { scale: 0.95 } : {}}
+          >
+            Book Now
+          </motion.button>
+
+          <p className={`text-center text-lg font-semibold
+            ${isDeadlinePassed ? 'text-red-600' : 'text-green-600'}`}>
+            Deadline: {event.deadline}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
   );
 };
 
