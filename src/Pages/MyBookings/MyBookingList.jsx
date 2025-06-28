@@ -1,27 +1,13 @@
-// import React, { use } from 'react';
-
-// const MyBookingList = ({myApplicationsPromise}) => {
-
-//     const bookings = use(myApplicationsPromise);
-
-//     return (
-//         <div>
-//             {bookings.length}
-//         </div>
-//     );
-// };
-
-// export default MyBookingList;
-
-
 import React, { useState, useEffect, use } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/loading.json';
+import toast from 'react-hot-toast';
 
 const MyBookingList = ({ myApplicationsPromise }) => {
+
     const initialBookings = use(myApplicationsPromise);
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,26 +19,37 @@ const MyBookingList = ({ myApplicationsPromise }) => {
         return () => clearTimeout(timer);
     }, [initialBookings]);
 
-    const handleDelete = async (id) => {
-        const confirm = await Swal.fire({
-            title: 'Are you sure?',
-            text: 'Do you want to cancel this booking?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, cancel it!',
-            cancelButtonText: 'No'
-        });
 
-        if (confirm.isConfirmed) {
-            try {
-                await axios.delete(`http://localhost:3000/bookings/${id}`);
-                setBookings(bookings.filter(item => item._id !== id));
-                Swal.fire('Deleted!', 'Your booking has been cancelled.', 'success');
-            } catch (err) {
-                console.error(err);
-                Swal.fire('Error', 'Something went wrong.', 'error');
-            }
+    const handleDelete = (id) => {
+    console.log(id);
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+    if (result.isConfirmed) {
+        fetch(`http://localhost:3000/bookings/${id}`, {
+            method: 'DELETE'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('after delete', data);
+                if (data.deletedCount > 0) {
+                    toast.success("Booking deleted successfully!", { position: "top-right" });
+                    setBookings(bookings.filter(b => b._id !== id));
+                } else {
+                     toast.error("Booking could not be deleted!", { position: "top-right" });
+                }
+            })
+            .catch(() => {
+                 toast.error("Something went wrong!", { position: "top-right" });
+            });
         }
+    });
     };
 
     if (loading) {

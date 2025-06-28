@@ -13,6 +13,8 @@ import PrivateRoute from '../routes/PrivateRoute';
 import CreateEvent from '../Pages/CreateEvent/CreateEvent';
 import EventDetails from '../Pages/EventDetails/EventDetails';
 import MyBookings from '../Pages/MyBookings/MyBookings';
+import ManageEvents from '../Pages/ManageEvents/ManageEvents';
+import UpdatedEventPage from '../Pages/ManageEvents/UpdatedEventPage/UpdatedEventPage';
 
 
 
@@ -73,6 +75,17 @@ const router = createBrowserRouter([
             element: <PrivateRoute>
               <MyBookings></MyBookings>
             </PrivateRoute>
+        },
+        {
+            path: '/manageEvents',
+            element: <PrivateRoute>
+              <ManageEvents></ManageEvents>
+            </PrivateRoute>
+        },
+        {
+            path: '/updateEvent/:id',
+            loader: ({params})=>fetch(`http://localhost:3000/sports/${params.id}`),
+            Component: UpdatedEventPage
         }
     ]
   },
