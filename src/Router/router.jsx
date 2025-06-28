@@ -15,6 +15,7 @@ import EventDetails from '../Pages/EventDetails/EventDetails';
 import MyBookings from '../Pages/MyBookings/MyBookings';
 import ManageEvents from '../Pages/ManageEvents/ManageEvents';
 import UpdatedEventPage from '../Pages/ManageEvents/UpdatedEventPage/UpdatedEventPage';
+import ErrorPage from '../Pages/Errorpage/ErrorPage';
 
 
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
         {
             index: true,
