@@ -23,7 +23,7 @@ import ErrorPage from '../Pages/Errorpage/ErrorPage';
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: RootLayout,
+    element: <RootLayout/>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
         {
@@ -70,7 +70,14 @@ const router = createBrowserRouter([
             element: <PrivateRoute>
               <EventDetails></EventDetails>
             </PrivateRoute>,
-            loader: ({params})=> fetch(`http://localhost:3000/sports/${params.id}`)
+            // loader: ({params})=> fetch(`http://localhost:3000/sports/${params.id}`)
+            loader: async ({ params }) => {
+            const res = await fetch(`http://localhost:3000/sports/${params.id}`);
+            if (!res.ok) {
+              throw new Response("Not Found", { status: 404 });
+            }
+            return res.json();
+  }
         },
         {
             path: '/myBookings',
@@ -86,7 +93,14 @@ const router = createBrowserRouter([
         },
         {
             path: '/updateEvent/:id',
-            loader: ({params})=>fetch(`http://localhost:3000/sports/${params.id}`),
+            // loader: ({params})=>fetch(`http://localhost:3000/sports/${params.id}`),
+            loader: async ({ params }) => {
+            const res = await fetch(`http://localhost:3000/sports/${params.id}`);
+              if (!res.ok) {
+                throw new Response("Not Found", { status: 404 });
+              }
+              return res.json();
+            },
             Component: UpdatedEventPage
         }
     ]

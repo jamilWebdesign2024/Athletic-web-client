@@ -1,59 +1,40 @@
-// import { useNavigate } from "react";
-
-// const EventCard = ({ event }) => {
-//   const navigate = useNavigate();
-
-//   return (
-    // <div className="card bg-white shadow-md rounded-xl overflow-hidden">
-    //   <figure>
-    //     <img
-    //       src={event.image}
-    //       alt={event.name}
-    //       className="h-48 w-full object-cover"
-    //     />
-    //   </figure>
-    //   <div className="card-body p-5">
-    //     <h3 className="text-xl font-bold mb-2">{event.name}</h3>
-    //     <p className="text-gray-600 mb-1">📍 {event.location}</p>
-    //     <p className="text-gray-500 mb-4">📅 {event.date}</p>
-    //     <button
-    //       onClick={() => navigate(`/events/${event._id}`)}
-    //       className="btn btn-sm btn-primary"
-    //     >
-    //       View Details
-    //     </button>
-    //   </div>
-    // </div>
-//   );
-// };
-
-// export default EventCard;
-
-
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
-const EventCard = ({event}) => {
+const EventCard = ({ event }) => {
   const navigate = useNavigate();
+
   return (
-     <div className="card bg-white shadow-md rounded-xl overflow-hidden">
-      <figure>
+    <div
+      className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+    >
+      <figure className="w-full h-48 overflow-hidden">
         <img
-          src={event.image}
-          alt={event.name}
-          className="h-48 w-full object-cover"
+          src={event.picture}
+          alt={event.eventName}
+          className="w-full h-full object-cover"
         />
       </figure>
-      <div className="card-body p-5">
-        <h3 className="text-xl font-bold mb-2">{event.title}</h3>
-        <p className="text-gray-600 mb-1">📍 {event.location}</p>
-        <p className="text-gray-500 mb-4">📅 {event.date}</p>
-        <button
-          onClick={() => navigate(`/eventDetails/${event._id}`)}
-          className="btn btn-sm btn-primary"
-        >
-          View Details
-        </button>
+
+      <div className="p-5">
+        <h3 className="text-lg md:text-xl font-bold mb-1 text-gray-800">
+          {event.eventName}
+        </h3>
+        <p className="text-gray-600 text-sm mb-1">📍 {event.venue}</p>
+        {/* <p className="text-gray-500 text-sm mb-1">📅 {event.eventDate}</p> */}
+
+        {/* ✅ createdAt date nicely formatted */}
+        {event.createdAt && (
+        <p className="text-gray-400 text-xs mb-4">
+          🕒 Created: {new Date(event.createdAt).toLocaleDateString('en-GB')}
+        </p>
+        )}
+
+        <Link to={`/events/${event._id}`}>
+                  <button className="btn btn-primary w-full rounded-lg transition-transform duration-200 hover:scale-105">
+                    View Details
+                  </button>
+        </Link>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/authContext';
 import axios from 'axios';
@@ -6,10 +6,11 @@ import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../../assets/loading.json';
+import { FaCalendarAlt, FaMapMarkerAlt, FaClock, FaCheckCircle } from 'react-icons/fa';
 
 const EventDetails = () => {
   const event = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user } = use(AuthContext);
 
   const [loading, setLoading] = useState(true);
   const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
@@ -56,109 +57,85 @@ const EventDetails = () => {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 py-10 px-4"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-5xl mx-auto px-6 py-10 mt-8 bg-white shadow-2xl rounded-2xl space-y-8"
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
-        {/* Left content */}
-        <div className="md:col-span-2 bg-white rounded-xl shadow-xl p-8 space-y-8">
-          <motion.h1
-            className="text-5xl font-extrabold text-blue-900"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.7 }}
-          >
-            {event.eventName}
-          </motion.h1>
-
-          <motion.img
-            src={event.picture}
-            alt={event.eventName}
-            className="rounded-lg w-full object-cover shadow-md"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.7 }}
+      {/* User Info + Book Now */}
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-4">
+          <img
+            src={user?.photoURL}
+            alt="User"
+            className="w-12 h-12 rounded-full border"
           />
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-lg text-gray-800"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-          >
-            <div>
-              <p><span className="font-semibold">Type:</span> {event.eventType}</p>
-              <p><span className="font-semibold">Date:</span> {event.eventDate}</p>
-              <p><span className="font-semibold">Time:</span> {event.time}</p>
-              <p><span className="font-semibold">Venue:</span> {event.venue}</p>
-            </div>
-            <div>
-              <p><span className="font-semibold">Category:</span> {event.category}</p>
-              <p><span className="font-semibold">Fee:</span> {event.fee} BDT</p>
-              <p><span className="font-semibold">Max Participants:</span> {event.maxParticipants}</p>
-              <p><span className="font-semibold">Deadline:</span> {event.deadline}</p>
-            </div>
-          </motion.div>
-
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 0.7 }}
-          >
-            <h2 className="text-3xl font-semibold mb-3 text-blue-900">Description</h2>
-            <p className="leading-relaxed text-gray-700">{event.description}</p>
-          </motion.section>
-
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.7, duration: 0.7 }}
-          >
-            <h2 className="text-3xl font-semibold mb-3 text-blue-900">Rules</h2>
-            <p className="leading-relaxed text-gray-700">{event.rules}</p>
-          </motion.section>
+          <div>
+            <p className="font-semibold text-gray-700">Creator: <span className='font-normal'>{event.creator_name}</span></p>
+            <p className="text-sm text-gray-500">{event.creator_email}</p>
+            <p className="text-xs text-gray-400">
+              Created: {new Date(event.createdAt).toLocaleDateString()}
+            </p>
+          </div>
         </div>
 
-        {/* Right booking card */}
-        <motion.div
-          className="bg-white rounded-xl shadow-xl p-8 flex flex-col justify-between"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+        <motion.button
+          onClick={handleBookNow}
+          disabled={isDeadlinePassed}
+          className={`px-5 py-3 rounded-lg text-white font-semibold shadow-md
+            ${isDeadlinePassed ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+          whileHover={!isDeadlinePassed ? { scale: 1.05 } : {}}
+          whileTap={!isDeadlinePassed ? { scale: 0.95 } : {}}
         >
-          <h3 className="text-3xl font-bold text-blue-900 mb-6 text-center">
-            Book Now Section
-          </h3>
-
-          <div className="flex-grow" />
-
-          <motion.button
-            onClick={handleBookNow}
-            disabled={isDeadlinePassed}
-            className={`w-full py-3 rounded-lg text-white font-semibold shadow-md
-              ${isDeadlinePassed ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}
-              focus:outline-none focus:ring-4 focus:ring-blue-400 transition mb-4`}
-            whileHover={!isDeadlinePassed ? { scale: 1.05 } : {}}
-            whileTap={!isDeadlinePassed ? { scale: 0.95 } : {}}
-          >
-            Book Now
-          </motion.button>
-
-          <p className={`text-center text-lg font-semibold
-            ${isDeadlinePassed ? 'text-red-600' : 'text-green-600'}`}>
-            Deadline: {event.deadline}
-          </p>
-        </motion.div>
+          Book Now
+        </motion.button>
       </div>
+
+      {/* Event Image */}
+      <img
+        src={event.picture}
+        alt={event.eventName}
+        className="w-full h-[400px] object-cover rounded-xl shadow-md"
+      />
+
+      {/* Title & Description */}
+      <div className="space-y-3">
+        <h2 className="text-4xl font-bold text-gray-800">{event.eventName}</h2>
+        <p className="text-gray-600 text-lg">{event.description}</p>
+      </div>
+
+      {/* Details */}
+      <div className="flex flex-wrap gap-6 items-center text-gray-700">
+        <div className="flex items-center gap-2 text-lg">
+          <FaCalendarAlt className="text-indigo-600" /> <span>{event.eventDate}</span>
+        </div>
+        <div className="flex items-center gap-2 text-lg">
+          <FaMapMarkerAlt className="text-red-500" /> <span>{event.venue}</span>
+        </div>
+        <div className="flex items-center gap-2 text-lg">
+          <FaClock className="text-blue-500" /> <span>{event.time}</span>
+        </div>
+      </div>
+
+      {/* Rules */}
+      <div className="bg-yellow-50 p-6 rounded-xl shadow-md">
+        <h3 className="text-2xl font-semibold text-yellow-700 mb-3">Rules</h3>
+        <p className="text-gray-800">{event.rules}</p>
+      </div>
+
+      {/* Benefits if available */}
+      {event.benefits && (
+        <div className="bg-green-50 p-6 rounded-xl shadow-md">
+          <h3 className="text-2xl font-semibold text-green-700 mb-3 flex items-center gap-2">
+            <FaCheckCircle /> Benefits
+          </h3>
+          <ul className="list-disc list-inside space-y-1 text-gray-800">
+            {event.benefits.map((benefit, idx) => (
+              <li key={idx}>{benefit}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </motion.div>
   );
 };

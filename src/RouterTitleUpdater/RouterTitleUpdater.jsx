@@ -7,10 +7,10 @@ const RouteTitleUpdater = () => {
   useEffect(() => {
     const path = location.pathname;
 
-    let title = 'Your Website Name'; // default title
+    let title = 'Events'; // default title
 
     if (path === '/') {
-      title = 'Home | Your Website Name';
+      title = 'Home | Home';
     } else if (path === '/manageEvents') {
       title = 'Manage Events | ManageEvents';
     } else if (path.startsWith('/updateEvent')) {
@@ -27,12 +27,12 @@ const RouteTitleUpdater = () => {
     else if (path === '/myBookings') {
       title = 'Manage Events | MyBookings';
     } 
-    // তোমার অন্য routes গুলো এখানে add করতে পারো
+    
 
     document.title = title;
   }, [location]);
 
-  return null; // কোনো UI দরকার নাই
+  return null; 
 };
 
 export default RouteTitleUpdater;
