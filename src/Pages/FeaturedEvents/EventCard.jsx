@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext/authContext';
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
+  const {user}=use(AuthContext)
 
   return (
     <div
@@ -21,20 +23,28 @@ const EventCard = ({ event }) => {
           {event.eventName}
         </h3>
         <p className="text-gray-600 text-sm mb-1">📍 {event.venue}</p>
-        {/* <p className="text-gray-500 text-sm mb-1">📅 {event.eventDate}</p> */}
-
-        {/* ✅ createdAt date nicely formatted */}
-        {event.createdAt && (
-        <p className="text-gray-400 text-xs mb-4">
-          🕒 Created: {new Date(event.createdAt).toLocaleDateString('en-GB')}
-        </p>
-        )}
-
+        <p className='my-4'><small>{event.description}</small></p>
         <Link to={`/events/${event._id}`}>
-                  <button className="btn btn-primary w-full rounded-lg transition-transform duration-200 hover:scale-105">
+                  <button className="btn btn-primary w-full rounded-lg transition-transform duration-200 hover:scale-105 my-4">
                     View Details
                   </button>
         </Link>
+        {event.createdAt && (
+        <div className="flex items-center justify-between gap-4 mt-4">
+          <img
+            src={user?.photoURL}
+            alt="User"
+            className="w-12 h-12 rounded-full border"
+          />
+          <div className='flex items-end justify-end flex-col'>
+            <p className="text-sm text-gray-500"><small>{event.creator_email}</small></p>
+            <p className="text-xs text-gray-400">
+              <small>🕒 Created: {new Date(event.createdAt).toLocaleDateString('en-GB')}</small>
+            </p>
+          </div>
+        </div>
+        )}
+
       </div>
     </div>
   );

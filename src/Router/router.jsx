@@ -7,7 +7,7 @@ import ForgotPassword from '../Pages/SignIn/PasswordForget/ForgotPassword';
 import ViewProfile from '../Pages/ViewProfile/ViewProfile';
 import EditProfile from '../Pages/EditProfile/EditProfile';
 import Register from '../Pages/Register/Register';
-import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
+// import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
 import EventPage from '../Pages/FeaturedEvents/EventPage';
 import PrivateRoute from '../routes/PrivateRoute';
 import CreateEvent from '../Pages/CreateEvent/CreateEvent';
@@ -55,10 +55,10 @@ const router = createBrowserRouter([
             Component: EventPage
         },
 
-        {
-          path: '/eventDetails/:id',
-          Component: EventDetailsPage
-        },
+        // {
+        //   path: '/eventDetails/:id',
+        //   Component: EventDetailsPage
+        // },
         {
             path: '/create-event',
             element: <PrivateRoute>

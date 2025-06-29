@@ -60,7 +60,7 @@ const EventDetails = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="max-w-5xl mx-auto px-6 py-10 mt-8 bg-white shadow-2xl rounded-2xl space-y-8"
+      className="max-w-5xl mx-auto px-6 py-10 mt-8 bg-pink-100 shadow-3xl rounded-3xl space-y-8"
     >
       {/* User Info + Book Now */}
       <div className="flex justify-between items-center">
@@ -74,12 +74,13 @@ const EventDetails = () => {
             <p className="font-semibold text-gray-700">Creator: <span className='font-normal'>{event.creator_name}</span></p>
             <p className="text-sm text-gray-500">{event.creator_email}</p>
             <p className="text-xs text-gray-400">
-              Created: {new Date(event.createdAt).toLocaleDateString()}
+              🕒 Created: {new Date(event.createdAt).toLocaleDateString('en-GB')}
             </p>
           </div>
         </div>
 
-        <motion.button
+        <div className='flex flex-col items-end justify-end gap-4'>
+          <motion.button
           onClick={handleBookNow}
           disabled={isDeadlinePassed}
           className={`px-5 py-3 rounded-lg text-white font-semibold shadow-md
@@ -89,6 +90,9 @@ const EventDetails = () => {
         >
           Book Now
         </motion.button>
+        <h3 className={`font-semibold
+            ${isDeadlinePassed ? 'text-red-600' : 'text-primary'}`}>DeadLine: {event.deadline}</h3>
+        </div>
       </div>
 
       {/* Event Image */}
