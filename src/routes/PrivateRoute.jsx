@@ -1,4 +1,4 @@
-import React, { use, useContext } from 'react';
+import React, { use} from 'react';
 import { Navigate, useLocation } from 'react-router';
 import Lottie from 'lottie-react';
 import loadingAnimation from '../assets/loading.json';  

@@ -4,28 +4,35 @@ import axios from '../../utils/axios';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../Contexts/AuthContext/authContext';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
-const ManageEventsList = ({ manageEventsPromise }) => {
+const ManageEventsList = () => {
   const navigate = useNavigate();
   const [events, setEvents] = useState(null);
-  const [error, setError] = useState(null);
+  const {user}=use(AuthContext)
+  const userEmail = user.email;
+  // const [error, setError] = useState(null);
+  const axiosSecure = useAxiosSecure();
+  // console.log(events);
+  // console.log(user);
+  
 
-  useEffect(() => {
-    let isMounted = true;
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/events?creator_email=${userEmail}`)
+  //   .then(res=> res.json()).then(data=> {
+  //     setEvents(data)      
+  //   })
+  // }, [userEmail]);
+  // console.log(events);
 
-    manageEventsPromise
-      .then(data => {
-        if (isMounted) setEvents(data);
-      })
-      .catch(err => {
-        if (isMounted) setError('Failed to load events.');
-        console.error(err);
-      });
+  useEffect(()=>{
+    axiosSecure.get(`/events?creator_email=${userEmail}`).then(res=>setEvents(res.data)).catch(err => console.log(err))
+  },[])
+  console.log(events);
 
-    return () => {
-      isMounted = false;
-    };
-  }, [manageEventsPromise]);
+
+
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
@@ -52,13 +59,13 @@ const ManageEventsList = ({ manageEventsPromise }) => {
 //     navigate(`/update-event/${id}`);
 //   };
 
-  if (error) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-violet-300 via-pink-300 to-rose-300">
-        <p className="text-white text-base sm:text-lg font-semibold">{error}</p>
-      </div>
-    );
-  }
+  // if (error) {
+  //   return (
+  //     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-violet-300 via-pink-300 to-rose-300">
+  //       <p className="text-white text-base sm:text-lg font-semibold">{error}</p>
+  //     </div>
+  //   );
+  // }
 
   if (events === null) {
     return (
