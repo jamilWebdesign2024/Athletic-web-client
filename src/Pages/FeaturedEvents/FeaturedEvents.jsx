@@ -21,8 +21,7 @@ const FeaturedEvents = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching featured events:', err);
-        setLoading(false);
+       setLoading(false);
       });
   }, []);
 

@@ -54,7 +54,7 @@ useEffect(()=>{
         setUser(currentUser);
         setLoading(false)
 
-        console.log('user in the state change', currentUser);
+       
     })
     return()=>{
         unSubscribe();

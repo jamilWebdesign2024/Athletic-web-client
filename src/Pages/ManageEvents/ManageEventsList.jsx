@@ -19,7 +19,7 @@ const ManageEventsList = () => {
   useEffect(()=>{
     axiosSecure.get(`/events?creator_email=${userEmail}`).then(res=>setEvents(res.data)).catch(err => console.log(err))
   },[])
-  console.log(events);
+
 
 
 
@@ -39,8 +39,7 @@ const ManageEventsList = () => {
         toast.success("Booking deleted successfully!", { position: "top-right" });
         setEvents(events.filter(e => e._id !== id));
       } catch (err) {
-        console.error(err);
-         toast.error("Booking could not be deleted!", { position: "top-right" });
+      toast.error("Booking could not be deleted!", { position: "top-right" });
       }
     }
   };

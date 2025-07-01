@@ -14,7 +14,7 @@ const UpdatedEventPage = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  // Toast config
+  
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',

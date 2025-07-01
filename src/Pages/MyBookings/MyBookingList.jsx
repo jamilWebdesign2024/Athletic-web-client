@@ -21,7 +21,6 @@ const MyBookingList = ({ myApplicationsPromise }) => {
 
 
     const handleDelete = (id) => {
-    console.log(id);
     Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -37,7 +36,6 @@ const MyBookingList = ({ myApplicationsPromise }) => {
             })
             .then(res => res.json())
             .then(data => {
-                console.log('after delete', data);
                 if (data.deletedCount > 0) {
                     toast.success("Booking deleted successfully!", { position: "top-right" });
                     setBookings(bookings.filter(b => b._id !== id));

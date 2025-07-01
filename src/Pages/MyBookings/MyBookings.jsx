@@ -11,8 +11,7 @@ const MyBookings = () => {
     const {user}=use(AuthContext);
     const {myBookingsPromise}=useBookingApi();
 
-    console.log('token in the context', user.accessToken);
-    
+  
 
 
 

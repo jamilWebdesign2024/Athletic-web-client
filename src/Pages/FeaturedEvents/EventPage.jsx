@@ -19,8 +19,7 @@ const EventPage = () => {
         setEvents(res.data);
       })
       .catch(err => {
-        console.log('Failed to fetch events', err);
-      })
+        })
       .finally(() => {
         setLoading(false);
       });

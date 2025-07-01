@@ -29,7 +29,7 @@ const sports = [
   },
 ];
 
-// Hook for animated number typing/deleting
+
 const useTypingNumber = (numberStr) => {
   const [displayed, setDisplayed] = useState(numberStr);
   const [index, setIndex] = useState(numberStr.length);
@@ -81,30 +81,30 @@ const PopularSports = () => {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                {/* Image */}
+                
                 <img
                   src={sport.image}
                   alt={sport.title}
                   className="w-full h-[420px] object-cover group-hover:scale-105 transition duration-500"
                 />
 
-                {/* Overlay */}
+                
                 <div className="absolute inset-0 bg-black/70 flex flex-col justify-between p-6 text-white">
-                  {/* Top Arrow */}
+                 
                   <div className="flex justify-end">
                     <div className="bg-white text-black p-2 rounded-full shadow-md">
                       <FaArrowUpRightDots />
                     </div>
                   </div>
 
-                  {/* Centered Title */}
+                  
                   <div className="flex-1 flex items-center justify-center text-center px-2">
                     <h3 className="text-3xl font-extrabold leading-tight">
                       {sport.title}
                     </h3>
                   </div>
 
-                  {/* Bottom Number (No Hyphen/Line) */}
+                  
                   <div className="text-primary text-6xl font-extrabold tracking-wider text-left">
                     {animatedNumber}
                   </div>

@@ -20,8 +20,7 @@ const EditProfile = () => {
       Swal.fire("Updated!", "Your profile has been updated.", "success");
     } catch (err) {
       Swal.fire("Error!", "Failed to update profile.", "error");
-      console.error(err);
-    }
+     }
   };
 
     return (

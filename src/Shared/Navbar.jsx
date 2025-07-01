@@ -30,7 +30,6 @@ const Navbar = () => {
             setMobileMenuOpen(false);
           })
           .catch((err) => {
-            console.error(err);
             toast.error('Logout failed. Please try again.');
           });
       }

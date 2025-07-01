@@ -20,13 +20,10 @@ const useAxiosSecure = () => {
         if(error.status === 401){
            signOutUser()
            .then(()=>{
-            console.log('sign out user for 401 status code');
-            })
+           })
             .catch(err=>{
-                console.log(err);
-            })
+                })
         }
-        console.log('error in interceptor', error);
         
         return Promise.reject(error)
     })
