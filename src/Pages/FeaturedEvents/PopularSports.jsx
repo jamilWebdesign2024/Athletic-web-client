@@ -1,109 +1,3 @@
-// // components/PopularSports.jsx
-// import { motion } from "framer-motion";
-
-// const sports = [
-//   "Sprinting",
-//   "Swimming",
-//   "Long Jump",
-//   "High Jump",
-//   "Hurdles",
-//   "Relay",
-// ];
-
-// const PopularSports = () => {
-//   return (
-// <section className="py-12 bg-base-200">
-//   <div className="container mx-auto px-4">
-//     <motion.h2
-//       className="text-3xl font-bold text-center mb-8"
-//       initial={{ opacity: 0, y: 50 }}
-//       whileInView={{ opacity: 1, y: 0 }}
-//       viewport={{ once: true }}
-//       transition={{ duration: 0.6 }}
-//     >
-//       Most Popular Sports
-//     </motion.h2>
-//     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-//       {sports.map((sport, i) => (
-//         <motion.div
-//           key={i}
-//           className="bg-white py-6 px-4 rounded-lg shadow-md hover:bg-primary hover:text-white cursor-pointer"
-//           initial={{ opacity: 0, scale: 0.9 }}
-//           whileInView={{ opacity: 1, scale: 1 }}
-//           viewport={{ once: true }}
-//           transition={{ delay: i * 0.1, duration: 0.4 }}
-//         >
-//           {sport}
-//         </motion.div>
-//       ))}
-//     </div>
-//   </div>
-// </section>
-//   );
-// };
-
-// export default PopularSports;
-
-// import React from "react";
-// import { motion } from "framer-motion";
-
-// const sports = [
-//   "Sprinting",
-//   "Swimming",
-//   "Long Jump",
-//   "High Jump",
-//   "Hurdles",
-//   "Relay",
-// ];
-
-// const PopularSports = () => {
-//   return (
-//     <section className="py-16 bg-base-200">
-//       <div className="w-10/12 mx-auto">
-//         {/* Heading with animation */}
-//         <motion.h2
-//           className="text-4xl font-bold text-center mb-12 text-neutral"
-//           initial={{ opacity: 0, y: 40 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6 }}
-//           viewport={{ once: true }}
-//         >
-//           ⚡ Most Popular Sports Events
-//         </motion.h2>
-
-//         {/* Description under heading */}
-//         <motion.p
-//           className="text-center max-w-2xl mx-auto text-gray-500 mb-10"
-//           initial={{ opacity: 0 }}
-//           whileInView={{ opacity: 1 }}
-//           transition={{ delay: 0.3, duration: 0.5 }}
-//           viewport={{ once: true }}
-//         >
-//           Explore the most thrilling and competitive sports events that ignite passion, test limits, and bring athletes together on a global stage.
-//         </motion.p>
-
-//         {/* Sports Grid */}
-//         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-//           {sports.map((sport, i) => (
-//             <motion.div
-//               key={i}
-//               className="bg-white text-center py-6 px-4 rounded-xl shadow-lg border border-gray-100 hover:bg-primary hover:text-white transition duration-300 cursor-pointer"
-//               initial={{ opacity: 0, scale: 0.9 }}
-//               whileInView={{ opacity: 1, scale: 1 }}
-//               transition={{ delay: i * 0.1, duration: 0.4 }}
-//               viewport={{ once: true }}
-//             >
-//               <span className="text-lg font-semibold">{sport}</span>
-//             </motion.div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default PopularSports;
-
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaArrowUpRightDots } from "react-icons/fa6";
@@ -158,7 +52,7 @@ const useTypingNumber = (numberStr) => {
           setPhase("deleting");
         }
       }
-    }, 500); // faster, smoother
+    }, 500); 
     return () => clearInterval(interval);
   }, [index, phase, numberStr]);
 

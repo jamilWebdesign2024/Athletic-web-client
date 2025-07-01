@@ -1,4 +1,3 @@
-// components/Testimonials.jsx
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay} from "swiper/modules";
 import { FaStar } from "react-icons/fa";
@@ -55,7 +54,7 @@ const Testimonials = () => {
           pagination={{ clickable: true }}
           autoplay={{ delay: 5000 }}
           breakpoints={{
-            768: { slidesPerView: 2 }, // show 2 slides side by side from medium screens
+            768: { slidesPerView: 2 }, 
           }}
         >
           {testimonials.map((testimonial, i) => (

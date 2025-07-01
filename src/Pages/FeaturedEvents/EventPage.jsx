@@ -14,7 +14,7 @@ const EventPage = () => {
   const {user}=use(AuthContext)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/sports')
+    axios.get('https://athletic-club-server.vercel.app/sports')
       .then(res => {
         setEvents(res.data);
       })

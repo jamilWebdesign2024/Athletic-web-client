@@ -5,18 +5,18 @@
 }
 
 :root {
-  /* Colors */
-  --color-primary: #ff1684;     /* Text Color (Pink/Magenta from image) */
-  --color-background: #0d1117;  /* Background Color (Dark Gray from image) */
+ 
+  --color-primary: #ff1684;    
+  --color-background: #0d1117;  
   --color-white: #ffffff;
 
-  /* Font Sizes */
-  --font-size-large: 1.5rem;    /* 24px */
-  --font-size-medium: 1.125rem; /* 18px */
-  --font-size-small: 0.875rem;  /* 14px */
+ 
+  --font-size-large: 1.5rem;  
+  --font-size-medium: 1.125rem; 
+  --font-size-small: 0.875rem; 
 }
 
-/* Utility Classes */
+
 .text-primary {
   color: var(--color-primary);
 }

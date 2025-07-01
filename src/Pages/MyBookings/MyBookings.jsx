@@ -4,7 +4,7 @@ import loadingAnimation from '../../assets/loading.json';
 import Lottie from 'lottie-react';
 import { AuthContext } from '../../Contexts/AuthContext/authContext';
 import useBookingApi from '../../api/useBookingApi';
-// import { myApplicationsPromise } from '../../api/bookingsApi';
+
 
 const MyBookings = () => {
 

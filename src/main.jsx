@@ -3,9 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { RouterProvider } from 'react-router'
-import router from './Router/Router.jsx'
 import AuthProvider from './Contexts/AuthProvider.jsx'
 import { Toaster } from 'react-hot-toast'
+import router from './Router/router.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')).render(
       toastOptions={{
         success: {
           style: {
-            background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', // Blue-cyan gradient
+            background: 'linear-gradient(135deg, #3b82f6, #06b6d4)', 
             color: 'white',
             fontWeight: '500',
             borderRadius: '10px',
@@ -29,7 +29,7 @@ createRoot(document.getElementById('root')).render(
         },
         error: {
           style: {
-            background: 'linear-gradient(135deg, #ef4444, #f97316)', // Red-orange gradient
+            background: 'linear-gradient(135deg, #ef4444, #f97316)', 
             color: 'white',
             fontWeight: '500',
             borderRadius: '10px',

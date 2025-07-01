@@ -4,7 +4,17 @@ import { AuthContext } from '../../Contexts/AuthContext/authContext';
 
 const EventCard = ({ event }) => {
   const navigate = useNavigate();
-  const {user}=use(AuthContext)
+  const {user}=use(AuthContext);
+
+   const handleViewDetails = () => {
+    Swal.fire({
+      title: 'Redirecting...',
+      text: `You're viewing details for "${event.eventName}"`,
+      icon: 'info',
+      timer: 1500,
+      showConfirmButton: false
+    })
+  };
 
   return (
     <div
@@ -25,14 +35,14 @@ const EventCard = ({ event }) => {
         <p className="text-gray-600 text-sm mb-1">📍 {event.venue}</p>
         <p className='my-4'><small>{event.description}</small></p>
         <Link to={`/events/${event._id}`}>
-                  <button className="btn btn-primary w-full rounded-lg transition-transform duration-200 hover:scale-105 my-4">
+                  <button onClick={handleViewDetails} className="btn btn-primary w-full rounded-lg transition-transform duration-200 hover:scale-105 my-4">
                     View Details
                   </button>
         </Link>
         {event.createdAt && (
         <div className="flex items-center justify-between gap-4 mt-4">
           <img
-            src={user?.photoURL}
+            src={event.creator_photo}
             alt="User"
             className="w-12 h-12 rounded-full border"
           />

@@ -36,7 +36,7 @@ const UpdatedEventPage = () => {
     setLoading(true);
     setSuccess(false);
 
-    fetch(`http://localhost:3000/sports/${_id}`, {
+    fetch(`https://athletic-club-server.vercel.app/sports/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

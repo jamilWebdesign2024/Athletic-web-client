@@ -7,7 +7,6 @@ import ForgotPassword from '../Pages/SignIn/PasswordForget/ForgotPassword';
 import ViewProfile from '../Pages/ViewProfile/ViewProfile';
 import EditProfile from '../Pages/EditProfile/EditProfile';
 import Register from '../Pages/Register/Register';
-// import EventDetailsPage from '../Pages/FeaturedEvents/EventDetailsPage';
 import EventPage from '../Pages/FeaturedEvents/EventPage';
 import PrivateRoute from '../routes/PrivateRoute';
 import CreateEvent from '../Pages/CreateEvent/CreateEvent';
@@ -54,11 +53,6 @@ const router = createBrowserRouter([
             path: '/events',
             Component: EventPage
         },
-
-        // {
-        //   path: '/eventDetails/:id',
-        //   Component: EventDetailsPage
-        // },
         {
             path: '/create-event',
             element: <PrivateRoute>
@@ -70,14 +64,13 @@ const router = createBrowserRouter([
             element: <PrivateRoute>
               <EventDetails></EventDetails>
             </PrivateRoute>,
-            // loader: ({params})=> fetch(`http://localhost:3000/sports/${params.id}`)
             loader: async ({ params }) => {
-            const res = await fetch(`http://localhost:3000/sports/${params.id}`);
+            const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
             if (!res.ok) {
               throw new Response("Not Found", { status: 404 });
             }
             return res.json();
-  }
+         }
         },
         {
             path: '/myBookings',
@@ -93,9 +86,8 @@ const router = createBrowserRouter([
         },
         {
             path: '/updateEvent/:id',
-            // loader: ({params})=>fetch(`http://localhost:3000/sports/${params.id}`),
             loader: async ({ params }) => {
-            const res = await fetch(`http://localhost:3000/sports/${params.id}`);
+            const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
               if (!res.ok) {
                 throw new Response("Not Found", { status: 404 });
               }

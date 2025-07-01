@@ -11,11 +11,12 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaClock, FaCheckCircle } from 'react-ico
 const EventDetails = () => {
   const event = useLoaderData();
   const { user } = use(AuthContext);
+  
 
   const [loading, setLoading] = useState(true);
   const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     if (event.deadline) {
       const deadlineDate = new Date(event.deadline);
       const today = new Date();
@@ -39,7 +40,7 @@ const EventDetails = () => {
     }
     const currentEvent = { ...event, user_email: user.email };
     try {
-      await axios.post('http://localhost:3000/bookings', currentEvent);
+      await axios.post('https://athletic-club-server.vercel.app/bookings', currentEvent);
       Swal.fire('Success', 'Your booking has been confirmed!', 'success');
     } catch (error) {
       console.error(error);

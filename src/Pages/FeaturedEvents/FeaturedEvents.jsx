@@ -15,7 +15,7 @@ const FeaturedEvents = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/featured-events')
+    axios.get('https://athletic-club-server.vercel.app/featured-events')
       .then(res => {
         setEvents(res.data);
         setLoading(false);
@@ -63,7 +63,7 @@ const FeaturedEvents = () => {
                 768: { slidesPerView: 2.2 },
                 1024: { slidesPerView: 3 },
               }}
-              className="pb-16" // pagination dots নিচে নামানোর জন্য padding-bottom
+              className="pb-16"
             >
               {events.map((event, index) => (
                 <SwiperSlide key={event._id}>

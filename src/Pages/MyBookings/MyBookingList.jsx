@@ -11,7 +11,7 @@ const MyBookingList = ({ myApplicationsPromise }) => {
     const initialBookings = use(myApplicationsPromise);
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [viewMode, setViewMode] = useState('table'); // 'table' or 'card'
+    const [viewMode, setViewMode] = useState('table'); 
 
     useEffect(() => {
         setBookings(initialBookings);
@@ -32,7 +32,7 @@ const MyBookingList = ({ myApplicationsPromise }) => {
         confirmButtonText: "Yes, delete it!"
     }).then((result) => {
     if (result.isConfirmed) {
-        fetch(`http://localhost:3000/bookings/${id}`, {
+        fetch(`https://athletic-club-server.vercel.app/bookings/${id}`, {
             method: 'DELETE'
             })
             .then(res => res.json())

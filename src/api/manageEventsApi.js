@@ -1,5 +1,5 @@
 export const manageEventsPromise = (email, accessToken) => {
-  return fetch(`http://localhost:3000/events?creator_email=${email}`,{
+  return fetch(`https://athletic-club-server.vercel.app/events?creator_email=${email}`,{
     headers: {
       authorization : `Bearer ${accessToken}`
     }

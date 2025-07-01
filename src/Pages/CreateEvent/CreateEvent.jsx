@@ -22,12 +22,13 @@ const CreateEvent = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // Add creator info and creation date
+    
     const eventInfo = {
       ...data,
       creator_email: user.email,
+      creator_photo: user.photoURL,
       creator_name: user.displayName,
-      createdAt: new Date().toISOString() // ✅ creation date goes to DB
+      createdAt: new Date().toISOString() 
     };
 
     try {
@@ -37,7 +38,7 @@ const CreateEvent = () => {
         setSuccess(true);
         Swal.fire('Success!', 'Event created successfully!', 'success');
         setTimeout(() => {
-          navigate('/manageEvents'); // বা যেখানে পাঠাতে চাও
+          navigate('/manageEvents'); 
         }, 2000);
       } else {
         throw new Error('Event creation failed!');

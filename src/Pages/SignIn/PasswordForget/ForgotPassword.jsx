@@ -15,8 +15,6 @@ const ForgotPassword = () => {
       return;
     }
 
-    // এখানে তুমি Firebase বা Node.js API দিয়ে reset link পাঠাবে
-    // Example: sendResetEmail(email)
 
     Swal.fire("Sent!", "Reset link sent to your email.", "success");
   };

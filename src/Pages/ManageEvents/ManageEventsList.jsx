@@ -12,19 +12,9 @@ const ManageEventsList = () => {
   const [events, setEvents] = useState(null);
   const {user}=use(AuthContext)
   const userEmail = user.email;
-  // const [error, setError] = useState(null);
-  const axiosSecure = useAxiosSecure();
-  // console.log(events);
-  // console.log(user);
-  
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/events?creator_email=${userEmail}`)
-  //   .then(res=> res.json()).then(data=> {
-  //     setEvents(data)      
-  //   })
-  // }, [userEmail]);
-  // console.log(events);
+  const axiosSecure = useAxiosSecure();
+ 
 
   useEffect(()=>{
     axiosSecure.get(`/events?creator_email=${userEmail}`).then(res=>setEvents(res.data)).catch(err => console.log(err))
@@ -55,17 +45,7 @@ const ManageEventsList = () => {
     }
   };
 
-//   const handleUpdate = (id) => {
-//     navigate(`/update-event/${id}`);
-//   };
 
-  // if (error) {
-  //   return (
-  //     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-violet-300 via-pink-300 to-rose-300">
-  //       <p className="text-white text-base sm:text-lg font-semibold">{error}</p>
-  //     </div>
-  //   );
-  // }
 
   if (events === null) {
     return (
@@ -123,7 +103,6 @@ const ManageEventsList = () => {
                     <td className="flex flex-col sm:flex-row justify-center items-center gap-1">
                      <Link to={`/updateEvent/${event._id}`}>
                       <button
-                        // onClick={() => handleUpdate(event._id)}
                         className="btn btn-outline btn-sm btn-secondary w-full sm:w-auto"
                       >
                         Update

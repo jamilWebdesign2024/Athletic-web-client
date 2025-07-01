@@ -7,7 +7,7 @@ const RouteTitleUpdater = () => {
   useEffect(() => {
     const path = location.pathname;
 
-    let title = 'Events'; // default title
+    let title = 'Events'; 
 
     if (path === '/') {
       title = 'Home | Home';
