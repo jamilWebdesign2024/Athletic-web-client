@@ -2,14 +2,12 @@
 
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
+    themes: light --default;
 }
 
-/* ==============================
-   Light Mode Variables
-   ============================== */
+/* Light mode variables */
 :root {
     --color-primary: #ff1684;
-    --color-primary-rgb: 255, 22, 132;
     --color-background: #ffffff;
     --color-text: #111111;
     --color-muted-text: #555555;
@@ -19,20 +17,17 @@
     --font-size-small: 0.875rem;
 }
 
-/* ==============================
-   Dark Mode Variables
-   ============================== */
+/* Dark mode variables */
 .dark {
     --color-primary: #ff1684;
-    --color-primary-rgb: 255, 22, 132;
     --color-background: #0d1117;
+    --color-background-card: #f9fafa;
     --color-text: #ffffff;
-    --color-muted-text: #aaaaaa;
+    --color-text-card: #030303;
+    --color-muted-text: #0d0d0d;
 }
 
-/* ==============================
-   Global Styles
-   ============================== */
+/* Apply variables globally */
 body {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -44,9 +39,11 @@ body {
 .text-primary {
     color: var(--color-primary);
 }
+
 .text-white {
     color: var(--color-text);
 }
+
 .text-muted {
     color: var(--color-muted-text);
 }
@@ -56,19 +53,15 @@ body {
     background-color: var(--color-primary);
     color: var(--color-text);
 }
+
 .bg-dark {
     background-color: var(--color-background);
     color: var(--color-text);
 }
+
 .bg-white {
     background-color: var(--color-background);
     color: var(--color-text);
-}
-.bg-card {
-    background-color: var(--color-background);
-}
-.border-border {
-    border-color: var(--color-muted-text);
 }
 
 /* Navbar */
@@ -85,12 +78,14 @@ body {
     border: none;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .btn-outline {
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     background-color: transparent;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .btn-outline:hover {
     background-color: var(--color-primary);
     color: var(--color-text);
@@ -102,35 +97,40 @@ body {
     color: var(--color-text);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .mobile-menu a {
     color: var(--color-text);
 }
+
 .mobile-menu a:hover {
     color: var(--color-primary);
 }
+
+/* Scrollbar for mobile menu */
 .mobile-menu::-webkit-scrollbar {
     width: 6px;
 }
+
 .mobile-menu::-webkit-scrollbar-thumb {
     background-color: var(--color-primary);
     border-radius: 3px;
 }
 
-/* ==============================
-   Theme Toggle Button
-   ============================== */
+/* ThemeToggle Button */
 .theme-toggle-btn {
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.4rem;
-    border-radius: 0.375rem; /* rounded-md */
+    border-radius: 0.375rem;
+    /* rounded-md */
     border: 1px solid var(--color-primary);
     color: var(--color-primary);
     background-color: transparent;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
 .theme-toggle-btn:hover,
 .theme-toggle-btn:focus {
     background-color: var(--color-primary);
@@ -138,13 +138,35 @@ body {
     outline: none;
 }
 
-/* Dark mode overrides */
 .dark .theme-toggle-btn {
     border-color: var(--color-text);
     color: var(--color-text);
 }
+
 .dark .theme-toggle-btn:hover,
 .dark .theme-toggle-btn:focus {
     background-color: var(--color-text);
     color: var(--color-primary);
+}
+
+
+/* Additional CSS for dark/light mode consistency */
+.bg-card {
+  background-color: var(--color-background-card);
+  color: var(--color-text-card)
+}
+
+.border-border {
+  border-color: var(--color-muted-text);
+}
+
+
+
+/* Add this to your root variables */
+:root {
+  --color-primary-rgb: 255, 22, 132;
+}
+
+.dark {
+  --color-primary-rgb: 255, 22, 132;
 }

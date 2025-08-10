@@ -82,7 +82,7 @@ const About = () => {
 
   return (
     <motion.section
-      className="py-12 sm:py-16 lg:py-20 bg-gray-100 text-text"
+      className="py-12 sm:py-16 lg:py-20 bg-gray-100 bg-dark text-text"
       ref={containerRef}
       initial="hidden"
       animate={mainControls}
@@ -95,7 +95,7 @@ const About = () => {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
             variants={itemVariants}
           >
-            About <span className="text-primary">Elite Athletic Club</span>
+            About <span className="text-primary dark:text-primary">Elite Athletic Club</span>
           </motion.h2>
           <motion.p
             className="text-lg sm:text-xl text-muted max-w-3xl mx-auto"
@@ -118,7 +118,7 @@ const About = () => {
             className="p-6 rounded-lg text-center border border-border bg-card" 
             variants={statItemVariants}
           >
-            <div className="text-primary mx-auto mb-3">
+            <div className="text-primary mx-auto mb-3 flex justify-center">
               <Users size={36} />
             </div>
             <h3 className="text-2xl font-bold mb-1">1500+</h3>
@@ -129,7 +129,7 @@ const About = () => {
             className="p-6 rounded-lg text-center border border-border bg-card"
             variants={statItemVariants}
           >
-            <div className="text-primary mx-auto mb-3">
+            <div className="text-primary mx-auto mb-3 flex justify-center">
               <Award size={36} />
             </div>
             <h3 className="text-2xl font-bold mb-1">87</h3>
@@ -140,7 +140,7 @@ const About = () => {
             className="p-6 rounded-lg text-center border border-border bg-card"
             variants={statItemVariants}
           >
-            <div className="text-primary mx-auto mb-3">
+            <div className="text-primary mx-auto mb-3 flex justify-center">
               <Activity size={36} />
             </div>
             <h3 className="text-2xl font-bold mb-1">12</h3>
@@ -151,7 +151,7 @@ const About = () => {
             className="p-6 rounded-lg text-center border border-border bg-card"
             variants={statItemVariants}
           >
-            <div className="text-primary mx-auto mb-3">
+            <div className="text-primary mx-auto mb-3 flex justify-center">
               <Clock size={36} />
             </div>
             <h3 className="text-2xl font-bold mb-1">28</h3>
@@ -168,10 +168,10 @@ const About = () => {
             initial="hidden"
             animate={cardControls}
           >
-            <div className="text-primary mb-4">
+            <div className="text-primary mb-4 flex justify-center">
               <Target size={48} strokeWidth={1.5} />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Our Mission</h3>
             <p className="text-muted leading-relaxed">
               To cultivate athletic excellence through world-class training, mentorship, and facilities. 
               We're committed to developing both physical prowess and mental resilience in our athletes.
@@ -186,10 +186,10 @@ const About = () => {
             animate={cardControls}
             transition={{ delay: 0.1 }}
           >
-            <div className="text-primary mb-4">
+            <div className="text-primary mb-4 flex justify-center">
               <Sparkles size={48} strokeWidth={1.5} />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Our Vision</h3>
             <p className="text-muted leading-relaxed">
               To be the global benchmark for athletic development, producing Olympians and 
               community leaders who embody sportsmanship, discipline, and excellence.
@@ -204,10 +204,10 @@ const About = () => {
             animate={cardControls}
             transition={{ delay: 0.2 }}
           >
-            <div className="text-primary mb-4">
+            <div className="text-primary mb-4 flex justify-center">
               <Handshake size={48} strokeWidth={1.5} />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Our Values</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Our Values</h3>
             <ul className="space-y-3 text-muted">
               <li className="flex items-start">
                 <Dumbbell className="text-primary mr-2 mt-1 flex-shrink-0" size={20} />
@@ -239,10 +239,10 @@ const About = () => {
             animate={cardControls}
             transition={{ delay: 0.3 }}
           >
-            <div className="text-primary mb-4">
+            <div className="text-primary mb-4 flex justify-center">
               <History size={48} strokeWidth={1.5} />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Our Legacy</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Our Legacy</h3>
             <p className="text-muted mb-4 leading-relaxed">
               Founded in 1995 by Olympic medalist John Dawson, Elite Athletic Club began as a 
               single-track training facility. Through visionary leadership and community support, 
@@ -262,10 +262,10 @@ const About = () => {
             animate={cardControls}
             transition={{ delay: 0.4 }}
           >
-            <div className="text-primary mb-4">
+            <div className="text-primary mb-4 flex justify-center">
               <Trophy size={48} strokeWidth={1.5} />
             </div>
-            <h3 className="text-2xl font-bold mb-4">Notable Achievements</h3>
+            <h3 className="text-2xl font-bold mb-4 text-center">Notable Achievements</h3>
             <ul className="space-y-4 text-muted">
               <li className="flex">
                 <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2023</span>
@@ -293,7 +293,7 @@ const About = () => {
 
         {/* Training Philosophy */}
         <motion.div
-          className="mb-16 p-8 rounded-xl bg-primary/5 border border-primary/20"
+          className="mb-16 p-8 rounded-xl bg-card/5 border border-primary/20"
           variants={itemVariants}
         >
           <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">Our Training Philosophy</h3>
@@ -334,7 +334,7 @@ const About = () => {
           variants={itemVariants}
           transition={{ delay: 0.5 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Join Our Winning Team</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center">Join Our Winning Team</h3>
           <p className="mb-6 max-w-2xl mx-auto opacity-90">
             Whether you're aiming for the podium or just starting your fitness journey, 
             we have the perfect program for you.
