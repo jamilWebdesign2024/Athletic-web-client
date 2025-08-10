@@ -15,6 +15,7 @@ import MyBookings from '../Pages/MyBookings/MyBookings';
 import ManageEvents from '../Pages/ManageEvents/ManageEvents';
 import UpdatedEventPage from '../Pages/ManageEvents/UpdatedEventPage/UpdatedEventPage';
 import ErrorPage from '../Pages/Errorpage/ErrorPage';
+import About from '../Pages/About/About';
 
 
 
@@ -22,79 +23,83 @@ import ErrorPage from '../Pages/Errorpage/ErrorPage';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout/>,
+    element: <RootLayout />,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
-        {
-            index: true,
-            Component: Home
-        },
-        {
-          path: '/login',
-          Component: Login
-        },
-        {
-          path: '/register',
-          Component: Register
-        },
-        {
-          path: '/forgot-password',
-          Component: ForgotPassword
-        },
-        {
-            path: '/profile',
-            Component: ViewProfile
-        },
-        {
-            path: '/profile/edit',
-            Component: EditProfile
-        },
-        {
-            path: '/events',
-            Component: EventPage
-        },
-        {
-            path: '/create-event',
-            element: <PrivateRoute>
-              <CreateEvent></CreateEvent>
-            </PrivateRoute>
-        },
-        {
-            path: '/events/:id',
-            element: <PrivateRoute>
-              <EventDetails></EventDetails>
-            </PrivateRoute>,
-            loader: async ({ params }) => {
-            const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
-            if (!res.ok) {
-              throw new Response("Not Found", { status: 404 });
-            }
-            return res.json();
-         }
-        },
-        {
-            path: '/myBookings',
-            element: <PrivateRoute>
-              <MyBookings></MyBookings>
-            </PrivateRoute>
-        },
-        {
-            path: '/manageEvents',
-            element: <PrivateRoute>
-              <ManageEvents></ManageEvents>
-            </PrivateRoute>
-        },
-        {
-            path: '/updateEvent/:id',
-            loader: async ({ params }) => {
-            const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
-              if (!res.ok) {
-                throw new Response("Not Found", { status: 404 });
-              }
-              return res.json();
-            },
-            Component: UpdatedEventPage
+      {
+        index: true,
+        Component: Home
+      },
+      {
+        path: '/login',
+        Component: Login
+      },
+      {
+        path: '/register',
+        Component: Register
+      },
+      {
+        path: '/forgot-password',
+        Component: ForgotPassword
+      },
+      {
+        path: '/profile',
+        Component: ViewProfile
+      },
+      {
+        path: '/profile/edit',
+        Component: EditProfile
+      },
+      {
+        path: '/about',
+        Component: About
+      },
+      {
+        path: '/events',
+        Component: EventPage
+      },
+      {
+        path: '/create-event',
+        element: <PrivateRoute>
+          <CreateEvent></CreateEvent>
+        </PrivateRoute>
+      },
+      {
+        path: '/events/:id',
+        element: <PrivateRoute>
+          <EventDetails></EventDetails>
+        </PrivateRoute>,
+        loader: async ({ params }) => {
+          const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
+          if (!res.ok) {
+            throw new Response("Not Found", { status: 404 });
+          }
+          return res.json();
         }
+      },
+      {
+        path: '/myBookings',
+        element: <PrivateRoute>
+          <MyBookings></MyBookings>
+        </PrivateRoute>
+      },
+      {
+        path: '/manageEvents',
+        element: <PrivateRoute>
+          <ManageEvents></ManageEvents>
+        </PrivateRoute>
+      },
+      {
+        path: '/updateEvent/:id',
+        loader: async ({ params }) => {
+          const res = await fetch(`https://athletic-club-server.vercel.app/sports/${params.id}`);
+          if (!res.ok) {
+            throw new Response("Not Found", { status: 404 });
+          }
+          return res.json();
+        },
+        Component: UpdatedEventPage
+      }
     ]
   },
 ]);
