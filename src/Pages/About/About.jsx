@@ -1,86 +1,355 @@
-import React, { useState, useEffect } from "react";
-import { FaUsers, FaDumbbell, FaHandshake, FaAward } from "react-icons/fa";
-import { motion } from "framer-motion";
-import Loading from "../Loading/Loading";
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
+import {
+  Sparkles,
+  Target,
+  History,
+  Trophy,
+  Handshake,
+  Dumbbell,
+  Shield,
+  Zap,
+  Award,
+  Users,
+  Activity,
+  Clock
+} from 'lucide-react';
 
 const About = () => {
-    const [loading, setLoading] = useState(true);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+  const mainControls = useAnimation();
+  const cardControls = useAnimation();
 
-    useEffect(() => {
-        const timer = setTimeout(() => setLoading(false), 1200);
-        return () => clearTimeout(timer);
-    }, []);
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start('visible');
+      cardControls.start('visible');
+    }
+  }, [isInView, mainControls, cardControls]);
 
-    if (loading) return <Loading />;
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
-    return (
-        <motion.section
-            className="max-w-7xl mx-auto px-6 md:px-12 py-16 bg-dark rounded-2xl shadow-xl text-white"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.6, 
+        ease: [0.25, 0.1, 0.25, 1] 
+      } 
+    },
+  };
+
+  const featureCardVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { 
+        duration: 0.5, 
+        ease: 'backOut' 
+      } 
+    },
+  };
+
+  const statsVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const statItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
+  return (
+    <motion.section
+      className="py-12 sm:py-16 lg:py-20 bg-gray-100 text-text"
+      ref={containerRef}
+      initial="hidden"
+      animate={mainControls}
+      variants={containerVariants}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-12 lg:mb-16">
+          <motion.h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6"
+            variants={itemVariants}
+          >
+            About <span className="text-primary">Elite Athletic Club</span>
+          </motion.h2>
+          <motion.p
+            className="text-lg sm:text-xl text-muted max-w-3xl mx-auto"
+            variants={itemVariants}
+          >
+            Empowering athletes to achieve greatness through dedication, community, and excellence. 
+            Our club has been shaping champions since 1995.
+          </motion.p>
+        </div>
+
+        {/* Stats Section */}
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
+          variants={statsVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
-            {/* Header */}
-            <header className="mb-12 text-center max-w-3xl mx-auto">
-                <h1 className="text-4xl font-extrabold mb-3 text-primary">About AthleticHub</h1>
-                <p className="text-lg text-gray-300 leading-relaxed">
-                    AthleticHub is a premier athletic club designed to foster community, excellence, and personal growth for athletes of all levels.
-                </p>
-                <div className="mt-6 w-24 h-1 bg-primary rounded mx-auto"></div>
-            </header>
-
-            {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <FeatureCard
-                    icon={<FaUsers size={48} className="text-primary mb-4" />}
-                    title="Community Driven"
-                    description="Connect and collaborate with fellow athletes, coaches, and enthusiasts in a supportive environment."
-                />
-                <FeatureCard
-                    icon={<FaDumbbell size={48} className="text-primary mb-4" />}
-                    title="State-of-the-Art Facilities"
-                    description="Access premium gym equipment and professional training spaces designed for peak performance."
-                />
-                <FeatureCard
-                    icon={<FaHandshake size={48} className="text-primary mb-4" />}
-                    title="Trusted Partnerships"
-                    description="Partnered with top sports brands and nutrition experts for exclusive benefits."
-                />
-                <FeatureCard
-                    icon={<FaAward size={48} className="text-primary mb-4" />}
-                    title="Events & Competitions"
-                    description="Regularly host competitions and events to challenge and celebrate your achievements."
-                />
+          <motion.div 
+            className="p-6 rounded-lg text-center border border-border bg-card" 
+            variants={statItemVariants}
+          >
+            <div className="text-primary mx-auto mb-3">
+              <Users size={36} />
             </div>
-
-            {/* About Details */}
-            <article className="mt-16 max-w-4xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed space-y-6 font-medium">
-                <p>
-                    At AthleticHub, we believe fitness is a journey best shared. Since our founding, we have dedicated ourselves to building an inclusive, inspiring space where athletes can train, compete, and grow together.
-                </p>
-                <p>
-                    Our team of experienced coaches tailor programs to your individual goals, whether you’re a beginner or a seasoned competitor. From strength training to endurance, we provide the tools and support you need to succeed.
-                </p>
-                <p>
-                    Join our vibrant community and experience the motivation, expertise, and camaraderie that make AthleticHub the go-to destination for athletes seeking excellence.
-                </p>
-            </article>
-        </motion.section>
-    );
-};
-
-const FeatureCard = ({ icon, title, description }) => {
-    return (
-        <motion.div
-            className="bg-gray-800 bg-opacity-60 rounded-xl p-8 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-        >
-            {icon}
-            <h3 className="text-xl font-semibold text-white mb-3">{title}</h3>
-            <p className="text-gray-400 text-sm md:text-base">{description}</p>
+            <h3 className="text-2xl font-bold mb-1">1500+</h3>
+            <p className="text-muted">Active Members</p>
+          </motion.div>
+          
+          <motion.div 
+            className="p-6 rounded-lg text-center border border-border bg-card"
+            variants={statItemVariants}
+          >
+            <div className="text-primary mx-auto mb-3">
+              <Award size={36} />
+            </div>
+            <h3 className="text-2xl font-bold mb-1">87</h3>
+            <p className="text-muted">Championships Won</p>
+          </motion.div>
+          
+          <motion.div 
+            className="p-6 rounded-lg text-center border border-border bg-card"
+            variants={statItemVariants}
+          >
+            <div className="text-primary mx-auto mb-3">
+              <Activity size={36} />
+            </div>
+            <h3 className="text-2xl font-bold mb-1">12</h3>
+            <p className="text-muted">Sports Disciplines</p>
+          </motion.div>
+          
+          <motion.div 
+            className="p-6 rounded-lg text-center border border-border bg-card"
+            variants={statItemVariants}
+          >
+            <div className="text-primary mx-auto mb-3">
+              <Clock size={36} />
+            </div>
+            <h3 className="text-2xl font-bold mb-1">28</h3>
+            <p className="text-muted">Years of Excellence</p>
+          </motion.div>
         </motion.div>
-    );
+
+        {/* Mission, Vision, Values */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 lg:mb-20">
+          {/* Mission Card */}
+          <motion.div
+            className="p-8 rounded-xl border border-border bg-card shadow-lg hover:shadow-xl transition-all duration-300"
+            variants={featureCardVariants}
+            initial="hidden"
+            animate={cardControls}
+          >
+            <div className="text-primary mb-4">
+              <Target size={48} strokeWidth={1.5} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+            <p className="text-muted leading-relaxed">
+              To cultivate athletic excellence through world-class training, mentorship, and facilities. 
+              We're committed to developing both physical prowess and mental resilience in our athletes.
+            </p>
+          </motion.div>
+
+          {/* Vision Card */}
+          <motion.div
+            className="p-8 rounded-xl border border-border bg-card shadow-lg hover:shadow-xl transition-all duration-300"
+            variants={featureCardVariants}
+            initial="hidden"
+            animate={cardControls}
+            transition={{ delay: 0.1 }}
+          >
+            <div className="text-primary mb-4">
+              <Sparkles size={48} strokeWidth={1.5} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+            <p className="text-muted leading-relaxed">
+              To be the global benchmark for athletic development, producing Olympians and 
+              community leaders who embody sportsmanship, discipline, and excellence.
+            </p>
+          </motion.div>
+
+          {/* Values Card */}
+          <motion.div
+            className="p-8 rounded-xl border border-border bg-card shadow-lg hover:shadow-xl transition-all duration-300"
+            variants={featureCardVariants}
+            initial="hidden"
+            animate={cardControls}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="text-primary mb-4">
+              <Handshake size={48} strokeWidth={1.5} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Our Values</h3>
+            <ul className="space-y-3 text-muted">
+              <li className="flex items-start">
+                <Dumbbell className="text-primary mr-2 mt-1 flex-shrink-0" size={20} />
+                <span>Discipline & Dedication</span>
+              </li>
+              <li className="flex items-start">
+                <Shield className="text-primary mr-2 mt-1 flex-shrink-0" size={20} />
+                <span>Integrity & Respect</span>
+              </li>
+              <li className="flex items-start">
+                <Users className="text-primary mr-2 mt-1 flex-shrink-0" size={20} />
+                <span>Teamwork & Community</span>
+              </li>
+              <li className="flex items-start">
+                <Zap className="text-primary mr-2 mt-1 flex-shrink-0" size={20} />
+                <span>Excellence in All We Do</span>
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* History and Achievements */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {/* History */}
+          <motion.div
+            className="p-8 rounded-xl border border-border bg-card shadow-lg"
+            variants={featureCardVariants}
+            initial="hidden"
+            animate={cardControls}
+            transition={{ delay: 0.3 }}
+          >
+            <div className="text-primary mb-4">
+              <History size={48} strokeWidth={1.5} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Our Legacy</h3>
+            <p className="text-muted mb-4 leading-relaxed">
+              Founded in 1995 by Olympic medalist John Dawson, Elite Athletic Club began as a 
+              single-track training facility. Through visionary leadership and community support, 
+              we've grown into a 15-acre multisport complex serving athletes of all ages and skill levels.
+            </p>
+            <p className="text-muted leading-relaxed">
+              Our evolution mirrors the growth of sports in our region, from adding our first 
+              swimming pool in 2002 to opening the state-of-the-art performance center in 2020.
+            </p>
+          </motion.div>
+
+          {/* Achievements */}
+          <motion.div
+            className="p-8 rounded-xl border border-border bg-card shadow-lg"
+            variants={featureCardVariants}
+            initial="hidden"
+            animate={cardControls}
+            transition={{ delay: 0.4 }}
+          >
+            <div className="text-primary mb-4">
+              <Trophy size={48} strokeWidth={1.5} />
+            </div>
+            <h3 className="text-2xl font-bold mb-4">Notable Achievements</h3>
+            <ul className="space-y-4 text-muted">
+              <li className="flex">
+                <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2023</span>
+                <span>Named "National Club of the Year" by Athletic Association</span>
+              </li>
+              <li className="flex">
+                <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2021</span>
+                <span>3 members competed in Tokyo Olympics</span>
+              </li>
+              <li className="flex">
+                <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2018</span>
+                <span>Junior basketball team national champions</span>
+              </li>
+              <li className="flex">
+                <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2015</span>
+                <span>Opened adaptive sports program</span>
+              </li>
+              <li className="flex">
+                <span className="bg-primary/10 text-primary font-medium px-2 py-1 rounded mr-3">2010</span>
+                <span>Hosted NCAA regional championships</span>
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Training Philosophy */}
+        <motion.div
+          className="mb-16 p-8 rounded-xl bg-primary/5 border border-primary/20"
+          variants={itemVariants}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center">Our Training Philosophy</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-primary mb-3 mx-auto">
+                <Activity size={40} strokeWidth={1.5} />
+              </div>
+              <h4 className="font-semibold mb-2">Holistic Development</h4>
+              <p className="text-muted text-sm">
+                We train the complete athlete - physical conditioning, mental toughness, and nutritional wellness.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-primary mb-3 mx-auto">
+                <Zap size={40} strokeWidth={1.5} />
+              </div>
+              <h4 className="font-semibold mb-2">Progressive Training</h4>
+              <p className="text-muted text-sm">
+                Science-backed methods that adapt to each athlete's growth curve and competitive cycle.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-primary mb-3 mx-auto">
+                <Users size={40} strokeWidth={1.5} />
+              </div>
+              <h4 className="font-semibold mb-2">Community Focus</h4>
+              <p className="text-muted text-sm">
+                Building relationships that extend beyond the field to create lifelong bonds and support networks.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="mt-8 p-8 rounded-xl bg-primary text-white text-center"
+          variants={itemVariants}
+          transition={{ delay: 0.5 }}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Join Our Winning Team</h3>
+          <p className="mb-6 max-w-2xl mx-auto opacity-90">
+            Whether you're aiming for the podium or just starting your fitness journey, 
+            we have the perfect program for you.
+          </p>
+          <motion.button
+            className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Explore Memberships
+          </motion.button>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
 };
 
 export default About;
