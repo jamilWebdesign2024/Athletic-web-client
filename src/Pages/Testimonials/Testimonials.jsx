@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay} from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import "swiper/css";
@@ -38,12 +38,12 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-16 text-gray-800 ">
+    <section className="py-16 bg-base-100">
       <div className="container mx-auto px-4 w-8/12">
         <h2 className="text-4xl font-bold text-center text-primary mb-4">
           Testimonials
         </h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center mb-12 max-w-2xl mx-auto">
           Hear what our users say about their experience with AthleticHub.
         </p>
 
@@ -54,17 +54,17 @@ const Testimonials = () => {
           pagination={{ clickable: true }}
           autoplay={{ delay: 5000 }}
           breakpoints={{
-            768: { slidesPerView: 2 }, 
+            768: { slidesPerView: 2 },
           }}
         >
           {testimonials.map((testimonial, i) => (
             <SwiperSlide key={i}>
-              <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
-              className="bg-pink-50 shadow-md rounded-xl p-6 h-full flex flex-col justify-between items-center text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.5 }}
+                className="bg-base-300 shadow-md rounded-xl p-6 h-full flex flex-col justify-between items-center text-center">
                 <div className="flex flex-col items-center gap-4 mb-4">
                   <img
                     src={testimonial.image}
@@ -77,11 +77,11 @@ const Testimonials = () => {
                         <FaStar key={i} />
                       ))}
                     </div>
-                    <p className="text-gray-600 mt-2">"{testimonial.text}"</p>
+                    <p className=" mt-2">"{testimonial.text}"</p>
                   </div>
                 </div>
-                <div className="pl-16">
-                  <p className="text-red-600 font-bold">{testimonial.name}</p>
+                <div className="">
+                  <p className="text-primary font-bold">{testimonial.name}</p>
                   <p className="text-sm">{testimonial.role}</p>
                 </div>
               </motion.div>

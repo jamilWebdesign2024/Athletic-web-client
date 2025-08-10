@@ -33,69 +33,68 @@ const Header = () => {
       setTimeout(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
         setTextVisible(true);
-      }, 1000); 
-    }, 8000); 
+      }, 1000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="carousel w-full h-screen relative overflow-hidden" ref={carouselRef}>
+    <div className="carousel w-full h-screen relative overflow-hidden -mb-5" ref={carouselRef}>
       {slides.map((slide, index) => (
         <div
-  key={slide.id}
-  className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
-    index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-  }`}
->
-  
-  <img
-    src={slide.image}
-    className="w-full h-full object-cover absolute top-0 left-0 z-0"
-    alt={`Slide ${slide.id}`}
-  />
+          key={slide.id}
+          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+        >
 
-  
-  <div className="absolute inset-0 bg-black/50 z-10"></div>
+          <img
+            src={slide.image}
+            className="w-full h-full object-cover absolute top-0 left-0 z-0"
+            alt={`Slide ${slide.id}`}
+          />
 
- 
-  {index === currentSlide && (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-20 px-4">
-      <motion.h5
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
-        transition={{ duration: 1 }}
-        className="text-5xl sm:text-6xl font-extrabold text-white mb-4"
-      >
-        {slide.title}
-      </motion.h5>
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
-        transition={{ duration: 1 }}
-        className="text-white mb-6 text-lg max-w-2xl mx-auto"
-      >
-        {slide.desc}
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="text-white mb-4 text-[12px]"
-      >
-        {slide.description}
-      </motion.p>
-      <motion.button
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
-        transition={{ duration: 1, delay: 0.4 }}
-        className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition"
-      >
-        Explore More
-      </motion.button>
-    </div>
-  )}
-</div>
+
+          <div className="absolute inset-0 bg-black/50 z-10"></div>
+
+
+          {index === currentSlide && (
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-20 px-4">
+              <motion.h5
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
+                transition={{ duration: 1 }}
+                className="text-5xl sm:text-6xl font-extrabold text-white mb-4"
+              >
+                {slide.title}
+              </motion.h5>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
+                transition={{ duration: 1 }}
+                className="text-white mb-6 text-lg max-w-2xl mx-auto"
+              >
+                {slide.desc}
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="text-white mb-4 text-[12px]"
+              >
+                {slide.description}
+              </motion.p>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition"
+              >
+                Explore More
+              </motion.button>
+            </div>
+          )}
+        </div>
 
       ))}
     </div>

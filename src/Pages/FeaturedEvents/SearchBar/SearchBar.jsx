@@ -12,9 +12,9 @@ const SearchBar = ({ searchTerm, onSearchChange }) => {
         value={searchTerm}
         onChange={handleChange}
         placeholder="Search by name or location..."
-        className="w-11/12 sm:w-3/4 lg:w-1/2 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition duration-200"
-        />
-        
+        className="w-11/12 sm:w-3/4 lg:w-1/2 px-4 py-3 border border-base-content focus:border-accent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-accent transition duration-200"
+      />
+
     </div>
   );
 };

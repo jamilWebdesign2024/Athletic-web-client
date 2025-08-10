@@ -10,19 +10,17 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 const ManageEventsList = () => {
   const navigate = useNavigate();
   const [events, setEvents] = useState(null);
-  const {user}=use(AuthContext)
+  const { user } = use(AuthContext);
   const userEmail = user.email;
 
   const axiosSecure = useAxiosSecure();
- 
 
-  useEffect(()=>{
-    axiosSecure.get(`/events?creator_email=${userEmail}`).then(res=>setEvents(res.data)).catch(err => console.log(err))
-  },[])
-
-
-
-
+  useEffect(() => {
+    axiosSecure
+      .get(`/events?creator_email=${userEmail}`)
+      .then((res) => setEvents(res.data))
+      .catch((err) => console.log(err));
+  }, [userEmail, axiosSecure]);
 
   const handleDelete = async (id) => {
     const confirm = await Swal.fire({
@@ -36,40 +34,38 @@ const ManageEventsList = () => {
     if (confirm.isConfirmed) {
       try {
         await axios.delete(`/events/${id}`);
-        toast.success("Booking deleted successfully!", { position: "top-right" });
-        setEvents(events.filter(e => e._id !== id));
+        toast.success('Event deleted successfully!', { position: 'top-right' });
+        setEvents(events.filter((e) => e._id !== id));
       } catch (err) {
-      toast.error("Booking could not be deleted!", { position: "top-right" });
+        toast.error('Event could not be deleted!', { position: 'top-right' });
       }
     }
   };
 
-
-
   if (events === null) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-violet-300 via-pink-300 to-rose-300">
-        <div className="animate-spin rounded-full h-12 w-12 sm:h-14 sm:w-14 border-t-4 border-b-4 border-white"></div>
+      <div className="flex items-center justify-center min-h-screen bg-base-100">
+        <div className="animate-spin rounded-full h-12 w-12 sm:h-14 sm:w-14 border-t-4 border-b-4 border-primary"></div>
       </div>
     );
   }
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-violet-300 via-pink-300 to-rose-300 p-3 sm:p-6 md:p-10"
+      className="min-h-screen bg-base-100 p-3 sm:p-6 md:p-10"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-xl p-4 sm:p-6 md:p-10">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center text-rose-500">
+      <div className="max-w-7xl mx-auto bg-base-200 rounded-lg shadow-xl p-4 sm:p-6 md:p-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-primary text-center">
           Manage My Events
         </h2>
 
         {events.length === 0 ? (
           <div className="text-center space-y-3">
-            <p className="text-gray-600 text-base sm:text-lg">No events created yet.</p>
+            <p className="text-base-content text-base sm:text-lg">No events created yet.</p>
             <button
               onClick={() => navigate('/create-event')}
               className="btn btn-primary px-4 py-2 sm:px-6 sm:py-3 rounded-full font-medium"
@@ -80,33 +76,31 @@ const ManageEventsList = () => {
         ) : (
           <div className="overflow-x-auto rounded-md shadow-sm">
             <table className="table w-full text-center text-sm sm:text-base">
-              <thead className="bg-rose-100">
+              <thead className="bg-primary/20">
                 <tr>
-                  <th className="p-2 sm:p-3">Event</th>
-                  <th className="p-2 sm:p-3">Date</th>
-                  <th className="p-2 sm:p-3">Venue</th>
-                  <th className="p-2 sm:p-3">Fee</th>
-                  <th className="p-2 sm:p-3">Actions</th>
+                  <th className="p-2 sm:p-3 text-primary">Event</th>
+                  <th className="p-2 sm:p-3 text-primary">Date</th>
+                  <th className="p-2 sm:p-3 text-primary">Venue</th>
+                  <th className="p-2 sm:p-3 text-primary">Fee</th>
+                  <th className="p-2 sm:p-3 text-primary">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {events.map(event => (
+                {events.map((event) => (
                   <tr
                     key={event._id}
-                    className="hover:bg-rose-50 transition duration-200"
+                    className="hover:bg-primary/10 transition duration-200 cursor-pointer"
                   >
-                    <td className="font-semibold">{event.eventName}</td>
-                    <td>{event.eventDate}</td>
-                    <td>{event.venue}</td>
-                    <td>{event.fee} BDT</td>
+                    <td className="font-semibold text-base-content">{event.eventName}</td>
+                    <td className="text-base-content">{event.eventDate}</td>
+                    <td className="text-base-content">{event.venue}</td>
+                    <td className="text-base-content">{event.fee} BDT</td>
                     <td className="flex flex-col sm:flex-row justify-center items-center gap-1">
-                     <Link to={`/updateEvent/${event._id}`}>
-                      <button
-                        className="btn btn-outline btn-sm btn-secondary w-full sm:w-auto"
-                      >
-                        Update
-                      </button>
-                     </Link>
+                      <Link to={`/updateEvent/${event._id}`}>
+                        <button className="btn btn-outline btn-sm btn-secondary w-full sm:w-auto">
+                          Update
+                        </button>
+                      </Link>
                       <button
                         onClick={() => handleDelete(event._id)}
                         className="btn btn-outline btn-sm btn-error w-full sm:w-auto"

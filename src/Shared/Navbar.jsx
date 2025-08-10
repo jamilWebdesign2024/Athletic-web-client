@@ -13,6 +13,8 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  console.log(user);
+
 
   const handleLogout = () => {
     Swal.fire({
@@ -46,30 +48,30 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          <FaHome /> <span>Home</span>
+          <span>Home</span>
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/events"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          <FaCalendarAlt /> <span>Events</span>
+          <span>Events</span>
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          📖 <span>About</span>
+          <span>About</span>
         </NavLink>
       </li>
     </>
@@ -82,42 +84,42 @@ const Navbar = () => {
         <NavLink
           to="/create-event"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          📌 <span>Book Event</span>
+          <span>Book Event</span>
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/myBookings"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          <FaCalendarCheck /> <span>My Bookings</span>
+          <span>My Bookings</span>
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/manageEvents"
           className={({ isActive }) =>
-            isActive ? "text-primary font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
           }
         >
-          <FaTasks /> <span>Manage Events</span>
+          <span>Manage Events</span>
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="bg-dark text-white shadow-md sticky top-0 z-50 w-full">
-  <div className="w-full px-4 py-4 flex justify-between items-center">
+    <div className="bg-primary shadow-md sticky top-0 z-50 w-full">
+      <div className="w-full px-4 py-4 flex justify-between items-center">
 
         {/* Logo */}
-        <Link to="/" className="text-3xl font-bold text-white">
-          Athletic<span className="text-primary">Hub</span>
+        <Link to="/" className="text-3xl font-bold">
+          Athletic<span className="text-accent">Hub</span>
         </Link>
 
         {/* Desktop Menu */}
@@ -152,16 +154,16 @@ const Navbar = () => {
             <div className="relative hidden lg:block">
               <img
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                src={user.photoURL || "https://i.ibb.co/2YjZgZ8/default-user.png"}
+                src={user?.photoURL}
                 alt="profile"
-                title={user.displayName}
+                title={user?.displayName}
                 className="w-10 h-10 rounded-full cursor-pointer border-2 border-primary"
               />
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 z-50 w-64 bg-white text-black rounded-xl shadow-lg p-4 text-sm">
+                <div className="absolute right-0 mt-2 z-50 w-64 bg-base-100 rounded-xl shadow-lg p-4 text-sm">
                   <div className="text-center">
                     <img
-                      src={user.photoURL || "https://i.ibb.co/2YjZgZ8/default-user.png"}
+                      src={user?.photoURL}
                       alt="profile"
                       className="w-16 h-16 rounded-full mx-auto"
                     />
@@ -221,17 +223,17 @@ const Navbar = () => {
 
             {/* Mobile Menu Content */}
             {mobileMenuOpen && (
-              <div className="absolute right-4 top-16 z-50 w-72 bg-white text-black rounded-xl shadow-xl p-5 mobile-menu">
+              <div className="absolute right-4 top-16 z-50 w-72 bg-base-300 rounded-xl shadow-xl p-5 mobile-menu">
                 {user ? (
                   <>
                     <div className="flex flex-col items-center mb-4">
                       <img
-                        src={user.photoURL || "https://i.ibb.co/2YjZgZ8/default-user.png"}
+                        src={user?.photoURL}
                         className="w-20 h-20 rounded-full border-2 border-primary"
                         alt="profile"
                       />
-                      <p className="font-semibold mt-2">{user.displayName}</p>
-                      <p className="text-sm text-gray-500">{user.email}</p>
+                      <p className="font-semibold mt-2">{user?.displayName}</p>
+                      <p className="text-sm">{user.email}</p>
                       <Link
                         to="/profile"
                         className="btn btn-sm mt-2 btn-primary w-full"
@@ -241,7 +243,7 @@ const Navbar = () => {
                       </Link>
                     </div>
                     <ul
-                      className="space-y-2 text-sm"
+                      className="space-y-2 text-sm text-primary"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {publicLinks}

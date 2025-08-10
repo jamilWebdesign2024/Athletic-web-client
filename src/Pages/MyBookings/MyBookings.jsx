@@ -1,4 +1,4 @@
-import React, { Suspense, use} from 'react';
+import React, { Suspense, use } from 'react';
 import MyBookingList from './MyBookingList';
 import loadingAnimation from '../../assets/loading.json';
 import Lottie from 'lottie-react';
@@ -8,16 +8,16 @@ import useBookingApi from '../../api/useBookingApi';
 
 const MyBookings = () => {
 
-    const {user}=use(AuthContext);
-    const {myBookingsPromise}=useBookingApi();
-
-  
+    const { user } = use(AuthContext);
+    const { myBookingsPromise } = useBookingApi();
 
 
 
-return (
+
+
+    return (
         <div>
-            <Suspense fallback={<div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200">
+            <Suspense fallback={<div className="flex justify-center items-center min-h-screen ">
                 <Lottie animationData={loadingAnimation} loop className="w-48" />
             </div>}>
                 <MyBookingList myApplicationsPromise={myBookingsPromise(user.email)}></MyBookingList>

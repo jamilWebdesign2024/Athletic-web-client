@@ -1,41 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";
 
 const ThemeToggle = () => {
     const [theme, setTheme] = useState(() => {
-        if (typeof window !== "undefined") {
-            return localStorage.getItem("theme") ||
-                (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        }
-        return "light";
+        // Read theme from localStorage on first render
+        return localStorage.getItem("theme") || "light";
     });
 
     useEffect(() => {
-        const root = window.document.documentElement;
-        if (theme === "dark") {
-            root.classList.add("dark");
-        } else {
-            root.classList.remove("dark");
-        }
+        // Update data-theme attribute
+        document.documentElement.setAttribute("data-theme", theme);
+        // Save theme to localStorage
         localStorage.setItem("theme", theme);
+
     }, [theme]);
 
     const toggleTheme = () => {
-        setTheme(prev => (prev === "dark" ? "light" : "dark"));
+        setTheme(prev => (prev === "light" ? "dark" : "light"));
     };
 
     return (
         <button
-            aria-label="Toggle theme"
             onClick={toggleTheme}
-            className="theme-toggle-btn"
-            title="Toggle light/dark theme"
+            className="btn rounded-full w-10 h-10 btn-outline border-accent text-primary bg-transparent hover:bg-black/20"
+            aria-label="Toggle Theme"
         >
-            {theme === "dark" ? (
-                <FaSun className="text-yellow-400" size={20} />
-            ) : (
-                <FaMoon className="text-gray-700" size={20} />
-            )}
+            {theme === "light" ? "🌙" : "☀️"}
         </button>
     );
 };

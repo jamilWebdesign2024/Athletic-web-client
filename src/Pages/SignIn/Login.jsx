@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
 import { motion } from "framer-motion";
 import Lottie from 'lottie-react';
-import signInSuccess from '../../assets/sign.json'; 
+import signInSuccess from '../../assets/sign.json';
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
@@ -20,14 +20,14 @@ const Login = () => {
   const [emailInputValue, setEmailInputValue] = useState("");
   const [showSuccessLottie, setShowSuccessLottie] = useState(false);
 
-  const backgroundStyle = {
-    background: 'linear-gradient(to bottom right, #ffffff, #ffe4e6)',
-    minHeight: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-  };
+  // const backgroundStyle = {
+  //   background: 'bg-base-300', // bg-base-100 (from theme)
+  //   minHeight: '100vh',
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   overflow: 'hidden',
+  // };
 
   const handlePasswordChange = (e) => {
     const value = e.target.value;
@@ -47,7 +47,7 @@ const Login = () => {
     setShowSuccessLottie(true);
     setTimeout(() => {
       navigate(from);
-    }, 2000); // 2 seconds
+    }, 2000);
   };
 
   const handleLogin = (e) => {
@@ -84,80 +84,78 @@ const Login = () => {
   };
 
   return (
-    <div style={backgroundStyle}>
+    <div className='bg-base-300 min-h-screen space-y-10 flex items-center justify-center'>
       {showSuccessLottie && (
-        <div className="fixed inset-0 bg-white flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-base-300 flex justify-center items-center z-50">
           <Lottie animationData={signInSuccess} loop={false} />
         </div>
       )}
 
-      <div className={`relative z-10 w-full max-w-sm mx-auto ${showSuccessLottie ? 'pointer-events-none opacity-30' : ''}`}>
+      <div className={`relative py-10 lg:py-16  z-10 w-full max-w-sm mx-auto ${showSuccessLottie ? 'pointer-events-none opacity-30' : ''}`}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="card backdrop-blur-md bg-white/50 shadow-2xl border border-white/30 rounded-xl"
+          className="card bg-base-100 backdrop-blur-md shadow-2xl border border-base-300 rounded-xl"
         >
-          <div className="card-body text-gray-800">
+          <div className="card-body text-base-content">
             <h1 className="text-3xl font-bold text-center text-primary">Login Your Athletic Club</h1>
-            <p className='text-center text-gray-600'><small>One account for all Athletic Club services</small></p>
+            <p className='text-center text-base-content/70'><small>One account for all Athletic Club services</small></p>
 
             <form onSubmit={handleLogin}>
-              <label className="label text-gray-700">Email</label>
+              <label className="label text-base-content">Email</label>
               <input
                 type="email"
                 name="email"
-                className="w-full px-4 py-3 mb-2 text-gray-600 bg-pink-50 border border-neutral rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
+                className="input input-bordered w-full mb-2 bg-base-200"
                 value={emailInputValue}
                 onChange={(e) => setEmailInputValue(e.target.value)}
                 placeholder="Enter your email"
                 required
               />
 
-              <label className="label text-gray-700">Password</label>
+              <label className="label text-base-content">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={password}
                   onChange={handlePasswordChange}
-                  className="input w-full px-4 py-3 mb-2 text-gray-600 bg-pink-50 border border-neutral rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
+                  className="input input-bordered w-full mb-2 bg-base-200"
                   required
                   placeholder="Password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="btn btn-xs absolute top-3 right-4 text-pink-600"
+                  className="btn btn-xs absolute top-3 right-4 text-primary"
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
               </div>
 
               {passwordErrors.length > 0 && (
-                <div className="text-xs text-red-500 space-y-1 mt-1">
+                <div className="text-xs text-error space-y-1 mt-1">
                   {passwordErrors.map((err, idx) => <p key={idx}>{err}</p>)}
                 </div>
               )}
 
               <div className="text-right">
-                <Link to="/forgot-password" state={{ email: emailInputValue }}>Forgot password?</Link>
+                <Link to="/forgot-password" state={{ email: emailInputValue }} className="link link-primary">Forgot password?</Link>
               </div>
 
-              {error && <p className="text-red-400 text-xs">{error}</p>}
+              {error && <p className="text-error text-xs">{error}</p>}
 
-              <button className="btn font-bold bg-primary hover:bg-pink-600 mt-4 w-full border-none text-black">
+              <button className="btn btn-primary mt-4 w-full border-none text-base-100 font-bold">
                 Login
               </button>
 
-              <p className="pt-4 font-semibold text-center text-gray-700">
-                Don't have an account? <Link to="/register" className="text-primary underline">Register</Link>
+              <p className="pt-4 font-semibold text-center text-base-content">
+                Don't have an account? <Link to="/register" className="link link-primary">Register</Link>
               </p>
 
-              <div className="flex w-full flex-col">
-                <div className="divider">OR</div>
-              </div>
+              <div className="divider">OR</div>
 
               <button onClick={handleGoogle} type="button" className="btn btn-outline w-full">
                 <FaGoogle className="mr-2" /> Continue with Google

@@ -5,7 +5,7 @@ import { PiInstagramLogoBold } from "react-icons/pi";
 
 const Footer = () => {
 	return (
-		<div className="px-4 bg-black text-white divide-y dark:bg-gray-100 dark:text-gray-800">
+		<div className="px-4 bg-primary text-base-content divide-y ">
 			<div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
 				<div className="lg:w-1/3">
 					<a rel="noopener noreferrer" href="#" className="flex justify-center space-x-3 lg:justify-start">
@@ -20,7 +20,7 @@ const Footer = () => {
 				</div>
 				<div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
 					<div className="space-y-3">
-						<h3 className="tracking-wide uppercase dark:text-gray-900">Product</h3>
+						<h3 className="tracking-wide uppercase">Product</h3>
 						<ul className="space-y-1">
 							<li>
 								<a rel="noopener noreferrer" href="#">Home</a>
