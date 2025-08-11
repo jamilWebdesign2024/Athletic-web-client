@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext/authContext";
-import { FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
@@ -48,7 +48,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>Home</span>
@@ -58,7 +58,7 @@ const Navbar = () => {
         <NavLink
           to="/events"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>Events</span>
@@ -68,7 +68,7 @@ const Navbar = () => {
         <NavLink
           to="/about"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>About</span>
@@ -84,7 +84,7 @@ const Navbar = () => {
         <NavLink
           to="/create-event"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>Book Event</span>
@@ -94,7 +94,7 @@ const Navbar = () => {
         <NavLink
           to="/myBookings"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>My Bookings</span>
@@ -104,7 +104,7 @@ const Navbar = () => {
         <NavLink
           to="/manageEvents"
           className={({ isActive }) =>
-            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "text-white flex items-center space-x-1"
+            isActive ? "underline decoration-2 underline-offset-8 text-accent font-semibold flex items-center space-x-1" : "flex items-center space-x-1"
           }
         >
           <span>Manage Events</span>
@@ -143,7 +143,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/register"
-                className="btn btn-outline btn-sm text-white border-white"
+                className="btn btn-outline btn-sm bg-primary text-white flex items-center"
               >
                 Register
               </Link>
@@ -277,7 +277,7 @@ const Navbar = () => {
                       </Link>
                       <Link
                         to="/register"
-                        className="btn btn-outline btn-sm text-black border-gray-400 text-center"
+                        className="btn btn-outline btn-sm bg-primary text-white flex items-center justify-center"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         Register

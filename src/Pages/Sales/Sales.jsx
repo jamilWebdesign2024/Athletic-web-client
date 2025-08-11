@@ -49,14 +49,14 @@ const membershipPlans = [
     cta: "Become Elite"
   }
 ];
-    
+
 export default function Sales() {
   return (
     <section className="py-24 bg-base-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -119,7 +119,7 @@ export default function Sales() {
                 </ul>
 
                 <button
-                  className={`w-full btn ${plan.popular ? "btn-secondary" : "btn-primary"} group-hover:shadow-lg transition-all`}
+                  className={`w-full btn ${plan.popular ? "btn-secondary cursor-not-allowed" : "btn-primary cursor-not-allowed"} group-hover:shadow-lg transition-all`}
                 >
                   {plan.cta}
                   <Zap size={18} className="ml-2 group-hover:animate-pulse" />

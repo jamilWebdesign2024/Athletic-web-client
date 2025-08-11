@@ -115,7 +115,7 @@ const MyBookingList = ({ myApplicationsPromise }) => {
                                             <td className="p-2 text-center">
                                                 <button
                                                     onClick={() => handleDelete(booking._id)}
-                                                    className="btn btn-error btn-sm"
+                                                    className="btn btn-error btn-sm bg-base-200"
                                                 >
                                                     Delete
                                                 </button>

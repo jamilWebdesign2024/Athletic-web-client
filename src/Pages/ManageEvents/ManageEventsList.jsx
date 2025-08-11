@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../Contexts/AuthContext/authContext';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Lottie from 'lottie-react';
+import loadingAnimation from '../../assets/loading.json';
 
 const ManageEventsList = () => {
   const navigate = useNavigate();
@@ -45,7 +47,12 @@ const ManageEventsList = () => {
   if (events === null) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-base-100">
-        <div className="animate-spin rounded-full h-12 w-12 sm:h-14 sm:w-14 border-t-4 border-b-4 border-primary"></div>
+
+        <div className="flex justify-center items-center min-h-screen">
+          <Lottie animationData={loadingAnimation} loop className="w-60" />
+        </div>
+
+
       </div>
     );
   }

@@ -88,7 +88,7 @@ const Header = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: textVisible ? 1 : 0, y: textVisible ? 0 : 20 }}
                 transition={{ duration: 1, delay: 0.4 }}
-                className="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-700 transition"
+                className="bg-primary text-base-content px-6 py-3 rounded-full font-semibold cursor-not-allowed transition"
               >
                 Explore More
               </motion.button>

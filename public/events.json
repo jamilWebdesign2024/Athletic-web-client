@@ -4,7 +4,7 @@
     "title": "Athletic Bootcamp 2025",
     "image": "https://i.postimg.cc/vZ1dnMF0/serious-young-sportsman-standing-isolated.jpg",
     "description": "Join our elite bootcamp and push your limits with expert coaches and intense training sessions.",
-    "date": "2025-07-10",
+    "date": "2025-08-15",
     "location": "Dhaka Stadium",
     "time_schedule": {
       "monday": "10:00 AM - 1:00 PM",
@@ -13,7 +13,10 @@
     "contact": {
       "email": "bootcamp@fitzone.com",
       "phone": "+8801700000001",
-      "locations": ["Dhaka Stadium", "Training Zone A"],
+      "locations": [
+        "Dhaka Stadium",
+        "Training Zone A"
+      ],
       "hours": "9:00 AM - 6:00 PM"
     },
     "challenges": [
@@ -32,7 +35,7 @@
     "title": "Fitness & Wellness Expo",
     "image": "https://i.postimg.cc/BbKrLhkn/athlete-man-biking-gym-exercising-his-legs-doing-cardio-training-cycling-bikes.jpg",
     "description": "Explore the latest fitness trends and healthy lifestyle tips at this grand expo.",
-    "date": "2025-07-15",
+    "date": "2025-08-15",
     "location": "Bashundhara Convention Center",
     "time_schedule": {
       "tuesday": "11:00 AM - 4:00 PM",
@@ -41,7 +44,10 @@
     "contact": {
       "email": "expo@wellnessbd.com",
       "phone": "+8801700000002",
-      "locations": ["Main Hall", "Health Booths"],
+      "locations": [
+        "Main Hall",
+        "Health Booths"
+      ],
       "hours": "10:00 AM - 7:00 PM"
     },
     "challenges": [
@@ -59,7 +65,7 @@
     "title": "Youth Marathon 2025",
     "image": "https://i.postimg.cc/76dvLvBR/flexible-young-player-hitting-ball.jpg",
     "description": "Run with the youth of the nation and experience the thrill of a city-wide marathon.",
-    "date": "2025-07-20",
+    "date": "2025-08-20",
     "location": "Chattogram City Road",
     "time_schedule": {
       "sunday": "6:00 AM - 10:00 AM"
@@ -67,7 +73,10 @@
     "contact": {
       "email": "marathon@runbd.com",
       "phone": "+8801700000003",
-      "locations": ["Starting Point", "Finishing Line Zone"],
+      "locations": [
+        "Starting Point",
+        "Finishing Line Zone"
+      ],
       "hours": "6:00 AM - 12:00 PM"
     },
     "challenges": [
@@ -86,7 +95,7 @@
     "title": "Pro Boxing League",
     "image": "https://i.postimg.cc/gJnFdcKR/guy-stance-dark-room.jpg",
     "description": "Watch top professional boxers from around the country compete for the championship title.",
-    "date": "2025-07-25",
+    "date": "2025-08-25",
     "location": "Rajshahi Indoor Stadium",
     "time_schedule": {
       "friday": "3:00 PM - 9:00 PM",
@@ -95,7 +104,10 @@
     "contact": {
       "email": "boxing@leaguebd.com",
       "phone": "+8801700000004",
-      "locations": ["Main Ring", "VIP Arena"],
+      "locations": [
+        "Main Ring",
+        "VIP Arena"
+      ],
       "hours": "3:00 PM - 11:00 PM"
     },
     "challenges": [
@@ -114,7 +126,7 @@
     "title": "Summer Sports Carnival",
     "image": "https://i.postimg.cc/MKk22SfM/muscular-fit-healthy-young-man-doing-pushup-race-track.jpg",
     "description": "A week-long carnival featuring football, volleyball, and fun games for all ages.",
-    "date": "2025-07-30",
+    "date": "2025-08-30",
     "location": "Sylhet Sports Complex",
     "time_schedule": {
       "daily": "9:00 AM - 8:00 PM"
@@ -122,7 +134,11 @@
     "contact": {
       "email": "carnival@sportsfun.com",
       "phone": "+8801700000005",
-      "locations": ["Football Ground", "Indoor Hall", "Kids Zone"],
+      "locations": [
+        "Football Ground",
+        "Indoor Hall",
+        "Kids Zone"
+      ],
       "hours": "9:00 AM - 9:00 PM"
     },
     "challenges": [
@@ -149,7 +165,10 @@
     "contact": {
       "email": "womenfit@fitbd.com",
       "phone": "+8801700000006",
-      "locations": ["Yoga Arena", "Talk Show Hall"],
+      "locations": [
+        "Yoga Arena",
+        "Talk Show Hall"
+      ],
       "hours": "10:00 AM - 6:00 PM"
     },
     "challenges": [

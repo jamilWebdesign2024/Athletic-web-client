@@ -9,8 +9,8 @@ const ViewProfile = () => {
 
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-100">
-            <div className="bg-white rounded-xl shadow-lg p-8 w-[90%] max-w-md text-center space-y-4">
+        <div className="min-h-screen flex items-center justify-center bg-base-300">
+            <div className="rounded-xl shadow-lg p-8 w-[90%] max-w-md bg-base-100 text-center space-y-4">
                 <img
                     src={user?.photoURL || "https://i.ibb.co/2YjZgZ8/default-user.png"}
                     alt="User"
@@ -20,7 +20,7 @@ const ViewProfile = () => {
                 <p className="text-gray-500">{user?.email}</p>
                 <Link
                     to="/profile/edit"
-                    className="btn bg-primary text-white hover:bg-pink-600"
+                    className="btn bg-primary text-base-content"
                 >
                     Edit Profile
                 </Link>

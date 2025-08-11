@@ -6,12 +6,12 @@ import { AuthContext } from '../../Contexts/AuthContext/authContext';
 
 const EditProfile = () => {
 
-    const { user } = use(AuthContext);
-    const [name, setName] = useState(user?.displayName || "");
-    const [photo, setPhoto] = useState(user?.photoURL || "");
+  const { user } = use(AuthContext);
+  const [name, setName] = useState(user?.displayName || "");
+  const [photo, setPhoto] = useState(user?.photoURL || "");
 
 
-    const handleSave = async () => {
+  const handleSave = async () => {
     try {
       await updateProfile(auth.currentUser, {
         displayName: name,
@@ -20,12 +20,12 @@ const EditProfile = () => {
       Swal.fire("Updated!", "Your profile has been updated.", "success");
     } catch (err) {
       Swal.fire("Error!", "Failed to update profile.", "error");
-     }
+    }
   };
 
-    return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-pink-100">
-      <div className="bg-white rounded-xl shadow-lg p-8 w-[90%] max-w-md text-center space-y-4">
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-base-300">
+      <div className="rounded-xl shadow-lg p-8 w-[90%] max-w-md text-center space-y-4">
         <h2 className="text-xl font-bold">Edit Your Profile</h2>
         <input
           type="text"
@@ -43,7 +43,7 @@ const EditProfile = () => {
         />
         <button
           onClick={handleSave}
-          className="btn bg-primary text-white hover:bg-pink-600 w-full"
+          className="btn bg-primary text-base-content w-full"
         >
           Save Profile
         </button>
