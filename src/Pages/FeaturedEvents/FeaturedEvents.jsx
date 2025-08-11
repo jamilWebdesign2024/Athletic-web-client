@@ -46,9 +46,9 @@ const FeaturedEvents = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
-        <div className="text-center">
+        <div className="text-center mb-4">
           <motion.h2
-            className="text-4xl font-bold text-center mb-6"
+            className="text-3xl font-bold text-primary text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

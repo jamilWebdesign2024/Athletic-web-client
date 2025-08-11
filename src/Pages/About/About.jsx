@@ -30,6 +30,8 @@ const features = [
   { icon: <Clock size={36} />, title: "Timely Actions", desc: "Delivering results when they matter the most." },
 ];
 
+
+
 const About = () => {
   return (
     <div className="bg-base-300">

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Contexts/AuthContext/authContext";
-import { FaSignInAlt, FaSignOutAlt, FaHome, FaCalendarAlt, FaCalendarCheck, FaTasks } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt} from "react-icons/fa";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 
